@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FPP</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- css -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/style.css" rel="stylesheet" media="screen">
+	<link href="color/default.css" rel="stylesheet" media="screen">
+	<script src="js/modernizr.custom.js"></script>
+	<style>table, tr, td { color:#FFFFFF !important; padding:5px; }</style>
+      </head>
+  <body bgcolor="#013950">
+	  <img src="img/fpp.png" alt="FPP" style="width:70%;"/>
+
+	  <!-- About -->
+	  <section id="about" class="home-section- bg-blue">
+		<div class="container">
+			  <div class="row">
+				  <div class="col-md-offset-1- col-md-12">
+					
+					 <h3 style="text-decoration:underline;"><strong>OVERVIEW</strong></h3>
+					 <p align="justify">
+Multicore processors are ubiquitous. It is an unavoidable consequence of the breakdown of Dennard scaling, which has put a stop to hardware delivering ever faster sequential performance. Hence, it is essential to parallelize the software applications running on these multicore processors for achieving high performance. FPP introduces the fundamentals of parallel programming. It covers both the traditional approaches and new advancements in the area of parallel programming. A key aim of this course is to provide hands-on knowledge on parallel programming by writing parallel programs in different programming models taught in this course. 
+					<!-- 
+					</p>
+					 <p align="justify">
+-->
+This course is offered in the spring semester at IIIT Delhi for undergraduate and postgraduate students. Students interested in taking this course should have prior experience with C/C++ programming.
+					 </p><br/>
+
+					 <h3 style="text-decoration:underline;"><strong>LECTURE TOPICS</strong></h3>
+					 <p align="justify">
+<br>
+<br>
+<ol>
+<li style="text-align:left;">Course overview, dos and don'ts </li>
+<li style="text-align:left;">Refresher on processes and threads, Pthread programming</li>
+<li style="text-align:left;">Introduction to parallel architectures and programming models </li>
+<li style="text-align:left;">Concurrency decomposition</li>
+<li style="text-align:left;">Introduction to dynamic tasks creation and termination, async-finish programming model</li>
+<li style="text-align:left;">Introduction to Habanero C/C++ library (<a href="https://github.com/habanero-rice/hclib">HClib</a>), computation graphs and ideal parallelism</li>
+<li style="text-align:left;">Greedy scheduling of computation graph on a fixed number of processors, template of a library-based thread-pool runtime</li>
+<li style="text-align:left;">Dynamic task scheduling using work-sharing and work-stealing </li>
+<li style="text-align:left;">Work-first and help-first work-stealing, loop-level parallelism</li>
+<li style="text-align:left;">Mutual exclusion in async-finish program, object-based isolation</li>
+<li style="text-align:left;">Task affinity with Hierarchical Place Trees (HPT)</li>
+<li style="text-align:left;">Runtime implementation of HPTs, memoization in async-finish program</li>
+<!-- <li style="text-align:left;">Parallel programming in Java, Fork/Join framework</li> -->
+<li style="text-align:left;">Mid semester review</li>
+<li style="text-align:left;">Futures and promises</li>
+<li style="text-align:left;">Data-driven tasks</li>
+<li style="text-align:left;">Cilk language and runtime</li>
+<li style="text-align:left;">Research seminar-1</li>
+<li style="text-align:left;">Research seminar-2</li>
+<li style="text-align:left;">Introduction to OpenMP</li>
+<li style="text-align:left;">Work-sharing constructs in OpenMP</li>
+<li style="text-align:left;">Task parallelism in OpenMP</li>
+<li style="text-align:left;">Introduction to distributed memory parallel programming using the Message Passing Interface (MPI)</li>
+<li style="text-align:left;">Point-to-point communications in MPI</li>
+<li style="text-align:left;">Collective communications in MPI, hybrid parallelism by using OpenMP in MPI</li>
+<li style="text-align:left;">Parallel programming in Partitioned Global Address Space (PGAS)</li>
+<li style="text-align:left;">End semester review</li>
+</ol>
+					 </p>
+
+					 <h3 style="text-decoration:underline;"><strong>ASSESSMENT PLAN</strong></h3>
+					 <p align="justify">
+<br>
+<br>
+<ul>
+<li style="text-align:left;"><u>Take home assignments</u> (10%) 
+<br>
+There are two assignments. Assignment-2 is a pair-programming based assignment. The output of assignment-1 serves as the input of assignment-2.
+</li>
+<li style="text-align:left;"><u>Pair programming based project </u>(25%)
+<br>
+Projects are released immediately after the midterm exams. The projects are aimed to teach runtime techniques for achieving high performance in task-based parallel programming model. We provide a set of pre-published conference papers and allow each student group to choose a research paper from these options. There are three intermediate deadlines for course project.
+</li>
+<li style="text-align:left;"><u>Lab programming</u> (5%)
+<br>
+Labs in FPP are short programming exercises that the student has to complete within 90 minutes in the presence of TAs. In each lab, we provide the student with a partially in-complete program. Students have to add parallelism to this program as per the supplied description. We follow N-1 policy for lab evaluation.
+</li>
+<li style="text-align:left;"><u>Quizzes</u> (10%)
+<br>
+Quizzes happen roughly after every four lectures. Each quiz is of 20 minutes duration and is scheduled during the lecture hours towards the end of the lecture. The quiz consists of multiple-choice questions, fill in the blanks, and reasoning based questions. We follow N-1 policy for quiz evaluation.
+</li>
+<li style="text-align:left;"><u>Midterm exam</u> (20%)</li>
+<li style="text-align:left;"><u>Endterm exam</u> (30%)</li>
+
+</ul>
+					 </p>
+
+					 <h3 style="text-decoration:underline;"><strong>HELPFUL RESOURCES</strong></h3>
+					 <p align="justify">
+<br>
+<ul>
+<li style="text-align:left;"><a href="https://missing.csail.mit.edu/">The Missing Semester of Your CS Education </a>(MIT) </li>
+<li style="text-align:left;"><a href="https://docs.github.com/en/get-started/quickstart/hello-world">Introduction to Github</a></li>
+<li style="text-align:left;"><a href="https://sourceware.org/gdb/onlinedocs/gdb/Threads.html">Debugging multithreaded programs</a></li>
+<li style="text-align:left;"><a href="https://github.com/vivkumar/cse502">Softwares for the FPP course</a></li>
+</ul>
+
+					 </p>
+
+					 <h3 style="text-decoration:underline;"><strong>PAST OFFERINGS</strong></h3>
+					 <p align="justify">
+<br>
+<ul>
+<li style="text-align:left;">2021 (online mode)</li>
+<li style="text-align:left;">2020</li>
+<li style="text-align:left;"><a href="https://vivkumar.github.io/images/fpp_2019.jpg">2019</a></li>
+<li style="text-align:left;"><a href="https://vivkumar.github.io/images/fpp_2018.jpg">2018</a></li>
+<li style="text-align:left;"><a href="https://vivkumar.github.io/images/fpp_2017.jpg">2017</a></li>
+</ul>
+					 </p>
+
+					 <h3 style="text-decoration:underline;"><strong>INSTRUCTOR</strong></h3>
+					 <p align="center">
+		<a href="https://vivkumar.github.io/"> <img src="https://vivkumar.github.io/DSCN9553.jpg" alt="Vivek Kumar" style="width:30%;"/></a>
+					 </p>
+				  </div>
+			  </div>
+			  
+			   
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<p>Copyright &copy; 2021. IIIT-Delhi</p>
+				</div>
+			</div>		
+		</div>	
+	</footer>
+	 
+	 <!-- js -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.smooth-scroll.min.js"></script>
+	<script src="js/jquery.dlmenu.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/custom.js"></script>
+  	
+</html>
