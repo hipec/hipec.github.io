@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSE513 PRMP</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- css -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/style.css" rel="stylesheet" media="screen">
+	<link href="color/default.css" rel="stylesheet" media="screen">
+	<script src="js/modernizr.custom.js"></script>
+	<style>table, tr, td { color:#FFFFFF !important; padding:5px; }</style>
+      </head>
+  <body bgcolor="#013950">
+	  <img src="img/prmp.png" alt="PRMP" style="width:60%;"/>
+
+	  <!-- About -->
+	  <section id="about" class="home-section- bg-blue">
+		<div class="container">
+			  <div class="row">
+				  <div class="col-md-offset-1- col-md-12">
+					
+					 <h3 style="text-decoration:underline;"><strong>CSE513 OVERVIEW</strong></h3>
+					 <p align="justify">
+Computing hardware is becoming more and more complex. Today and in the foreseeable future, performance will be delivered principally by increased hardware parallelism. Modern multicore processors scale to over one hundred cores, have wide vector units, maintain a complex memory hierarchy and even share the memory with accelerators such as GPU. Conventional programming models using threads impose significant complexity to organize code into multiple threads of control and balance work amongst threads to ensure proper utilization of computing resources. This shortcoming has helped the advent of parallel runtimes that assist the programmer by efficiently scheduling the parallel tasks over available resources. This course introduces the design and implementation of such a parallel runtime and explores the challenges in achieving performance and energy efficiency over modern processors.
+This course is offered in the fall semester at IIIT Delhi for undergraduate and postgraduate students. Students interested in taking this course should have prior experience with C/C++ programming.
+					 </p><br/>
+
+					 <h3 style="text-decoration:underline;"><strong>LECTURE TOPICS</strong></h3>
+					 <p align="justify">
+<br>
+<br>
+<ol>
+<li style="text-align:left;">Introduction to the course [<a href="prmp-pdf/lec01.pdf">PDF</a>]</li>
+<li style="text-align:left;">Introduction to parallel programming [<a href="prmp-pdf/lec02.pdf">PDF</a>]</li>
+<li style="text-align:left;">Parallel runtime systems [<a href="prmp-pdf/lec03.pdf">PDF</a>]</li>
+<li style="text-align:left;">Context switching inside the user space [<a href="prmp-pdf/lec04.pdf">PDF</a>]</li>
+<li style="text-align:left;">Boost fibers and Argobots [<a href="prmp-pdf/lec05.pdf">PDF</a>]</li>
+<li style="text-align:left;">Managing overheads from blocking tasks & deques [<a href="prmp-pdf/lec06.pdf">PDF</a>]</li>
+<li style="text-align:left;">Controlling task granularity [<a href="prmp-pdf/lec07.pdf">PDF</a>]</li>
+<li style="text-align:left;">Introduction to memory consistency [<a href="prmp-pdf/lec08.pdf">PDF</a>]</li>
+<li style="text-align:left;">Hardware memory consistency [<a href="prmp-pdf/lec09.pdf">PDF</a>]</li>
+<li style="text-align:left;">Language memory model [<a href="prmp-pdf/lec10.pdf">PDF</a>]</li>
+<li style="text-align:left;">Non Uniform Memory Access architecture [<a href="prmp-pdf/lec11.pdf">PDF</a>]</li>
+<li style="text-align:left;">Recursive task parallelism on NUMA architecture [<a href="prmp-pdf/lec12.pdf">PDF</a>]</li>
+<li style="text-align:left;">Trace and replay of task parallel programs [<a href="prmp-pdf/lec13.pdf">PDF</a>]</li>
+<li style="text-align:left;">Mid semester review [<a href="prmp-pdf/lec14.pdf">PDF</a>]</li>
+<li style="text-align:left;">Parallel programming using SIMD vector units [<a href="prmp-pdf/lec15.pdf">PDF</a>]</li>
+<li style="text-align:left;">Introduction to GPU computing [<a href="prmp-pdf/lec16.pdf">PDF</a>]</li>
+<li style="text-align:left;">Heterogeneous parallel programming [<a href="prmp-pdf/lec17.pdf">PDF</a>]</li>
+<li style="text-align:left;">Power management in multicore processors [<a href="prmp-pdf/lec18.pdf">PDF</a>]</li>
+<li style="text-align:left;">Cache coherency [<a href="prmp-pdf/lec19.pdf">PDF</a>]</li>
+<li style="text-align:left;">False sharing [<a href="prmp-pdf/lec20.pdf">PDF</a>]</li>
+<li style="text-align:left;">Resilience in the exascale era [<a href="prmp-pdf/lec21.pdf">PDF</a>]</li>
+<li style="text-align:left;">Runtime techniques for data race detection</li>
+<li style="text-align:left;">End semester review [<a href="prmp-pdf/lec23.pdf">PDF</a>]</li>
+<li style="text-align:left;">Research seminar-1</li>
+<li style="text-align:left;">Research seminar-2</li>
+</ol>
+					 </p>
+
+					 <h3 style="text-decoration:underline;"><strong>ASSESSMENT PLAN</strong></h3>
+					 <p align="justify">
+<br>
+<br>
+<ul>
+<li style="text-align:left;"><u>Pair programming based project </u>(60%)
+<br>
+The project is released after week two and runs throughout the semester. These projects teach runtime techniques for achieving performance and energy efficiency over modern processors for task-based parallel programming models. 
+</li>
+<li style="text-align:left;"><u>Quizzes</u> (10%)
+<br>
+Quizzes happen roughly after every six lectures. Each quiz is of 20 minutes duration and is scheduled during the lecture hours towards the end of the lecture. The quiz consists of multiple-choice questions, fill in the blanks, and reasoning based questions.
+</li>
+<li style="text-align:left;"><u>Midterm exam</u> (10%)</li>
+<li style="text-align:left;"><u>Endterm exam</u> (20%)</li>
+
+</ul>
+					 </p>
+
+					 <h3 style="text-decoration:underline;"><strong>HELPFUL RESOURCES</strong></h3>
+					 <p align="justify">
+<br>
+<ul>
+<li style="text-align:left;"><a href="https://missing.csail.mit.edu/">The Missing Semester of Your CS Education </a>(MIT) </li>
+<li style="text-align:left;"><a href="https://docs.github.com/en/get-started/quickstart/hello-world">Introduction to Github</a></li>
+<li style="text-align:left;"><a href="https://sourceware.org/gdb/onlinedocs/gdb/Threads.html">Debugging multithreaded programs</a></li>
+<li style="text-align:left;"><a href="https://github.com/hipec/cse513">Softwares for the PRMP course</a></li>
+</ul>
+
+					 </p>
+
+					 <h3 style="text-decoration:underline;"><strong>PAST OFFERINGS</strong></h3>
+					 <p align="justify">
+<br>
+<ul>
+<li style="text-align:left;"><a href="img/prmp_2022.jpg">Fall semester 2022</a></li>
+</ul>
+					 </p>
+
+					 <h3 style="text-decoration:underline;"><strong>INSTRUCTOR</strong></h3>
+					 <p align="center">
+		<a href="https://vivkumar.github.io/"> <img src="https://vivkumar.github.io/DSCN9553.jpg" alt="Vivek Kumar" style="width:30%;"/></a>
+					 </p>
+				  </div>
+			  </div>
+			  
+			   
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<p>Copyright &copy; Vivek Kumar</p>
+				</div>
+			</div>		
+		</div>	
+	</footer>
+	 
+	 <!-- js -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.smooth-scroll.min.js"></script>
+	<script src="js/jquery.dlmenu.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/custom.js"></script>
+  	
+</html>
