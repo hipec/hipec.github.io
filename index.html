@@ -261,6 +261,7 @@ The computing industry is at a crossroads where performance gains are no longer 
                  <div class="section-content">
                    <div class="research-topic" style="height: 300px; overflow-y: scroll;">
                        <h3>2026</h3>
+					   <span style="font-weight:bold;"> &raquo; Sunil's paper accepted in ACM TACO (not an extension of any conference paper).</span><br/><br/>
 					   <span style="font-weight:bold;"> &raquo; Spoorthi S. joined the lab as a PhD student.</span><br/><br/>
 					   <hr/>
                        <h3>2025</h3>
@@ -348,7 +349,7 @@ The computing industry is at a crossroads where performance gains are no longer 
                   </span>
                   <div class="button-links">
                     <div>
-                      <button class="button button-abstract" onclick="toggle_visibility('research20-abstract')">
+                      <button class="button button-abstract" onclick="toggle_visibility('research21-abstract')">
                         Abstract
                       </button>
  
@@ -365,7 +366,7 @@ The computing industry is at a crossroads where performance gains are no longer 
                     </div>
                   </div>
                   <div>
-                    <div id="research20-abstract" style="display: none;">
+                    <div id="research21-abstract" style="display: none;">
                       <p class="abstract abstract-text research-info">
                         <span>
                          ABSTRACT PARA-1
@@ -382,6 +383,47 @@ The computing industry is at a crossroads where performance gains are no longer 
 
 		<div class="research-topic">
                   <span style="font-weight:bold;">
+                    [TACO 2026]:
+                  </span>
+                  <span class="">
+                    S. Kumar, V. Kumar, and S. Bhalachandra, "Power Scheduling for Maximizing Throughput and Fairness in Co-running Applications", in ACM Transactions on Architecture and Code Optimization (TACO), 2016 (to appear). 
+                  </span>
+                  <div class="button-links">
+                    <div>
+                      <button class="button button-abstract" onclick="toggle_visibility('research20-abstract')">
+                        Abstract
+                      </button>
+<!-- 
+                      <a href="http://hipec.iiitd.edu.in/papers/ws-oopsla-2012-1.pdf" target="_blank">
+                        <button class="button button-paper">
+                          Paper
+                        </button>
+                      </a>
+                      <a href="https://vivkumar.github.io/javatrycatchws.html" target="_blank">
+                        <button class="button button-paper">
+                          Slides
+                        </button>
+                      </a>
+-->
+                    </div>
+                  </div>
+                  <div>
+                    <div id="research20-abstract" style="display: none;">
+                      <p class="abstract abstract-text research-info">
+                        <span>
+                         Due to the significant cost associated with power consumption, hardware overprovisioning is widely used to cap processor power consumption and improve the average power utilization of servers in data centers and nodes in HPC clusters. However, uniformly capping power across sockets in multiprocessor servers can lead to performance degradation for co-running applications due to workload variability. Existing solutions primarily focus on cluster-level power management, making limited use of power scheduling within multi-socket servers or processor frequency scaling to regulate power consumption under power constraints.
+                        </span>
+                        <br><br>
+                        <span>
+                        This paper introduces Fulcrum, a novel power management library for co-running parallel applications on multi-socket, multi-core servers, independent of the underlying parallel programming model. Fulcrum dynamically redistributes power on a power-constrained multi-socket server to maximize throughput and fairness for co-running applications without requiring prior knowledge of application characteristics. Fulcrum periodically profiles hardware performance monitoring counters and independently adjusts core and uncore frequencies for each application based on its power sensitivity and degree of parallelism, thereby maximizing overall system throughput. After optimizing application-level power usage, Fulcrum enhances application-level fairness by dynamically redistributing power among applications, thereby maximizing aggregate throughput while adhering to the server’s global power budget. We evaluated Fulcrum across various exascale proxy application mixes and power caps on a four-socket, 72-core Intel Cooper Lake processor. Our results show that Fulcrum improves system throughput (geometric mean) by 26.3% under low power caps and by up to 5.3% under higher power caps, while delivering power efficiency improvements of 27.7–8.4% at the respective power caps. Moreover, Fulcrum outperforms the two state-of-the-art approaches at both power caps, achieving geometric mean throughput improvements of 3.9–16.4% and power efficiency gains of 10.3–18.6%, while maintaining comparable fairness. 
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+		<div class="research-topic">
+                  <span style="font-weight:bold;">
                     [HiPC 2025 (Best Paper Award)]:
                   </span>
                   <span class="">
@@ -392,13 +434,13 @@ The computing industry is at a crossroads where performance gains are no longer 
                       <button class="button button-abstract" onclick="toggle_visibility('research19-abstract')">
                         Abstract
                       </button>
-<!-- 
-                      <a href="http://hipec.iiitd.edu.in/papers/ws-oopsla-2012-1.pdf" target="_blank">
+
+                      <a href="papers/hipc25.pdf" target="_blank">
                         <button class="button button-paper">
                           Paper
                         </button>
                       </a>
--->
+
                       <a href="./ppt/hipc25.pdf" target="_blank">
                         <button class="button button-paper">
                           Slides
