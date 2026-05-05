@@ -339,6 +339,7 @@ p { color: var(--grey); line-height: 1.75; }
 .section-full {
   padding: 80px 24px;
   border-top: 1px solid var(--line);
+  scroll-margin-top: 24px;
 }
 .section-full .section { padding-top: 0; padding-bottom: 0; }
 
@@ -357,6 +358,19 @@ p { color: var(--grey); line-height: 1.75; }
   margin-bottom: 40px;
   text-align: center;
 }
+
+/* ── PUB STATS ────────────────────────────────────────────── */
+.pub-stats {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-top: -24px;
+  margin-bottom: 32px;
+}
+.pub-stat { text-align: center; }
+.pub-stat-num { font-size: 1.6rem; font-weight: 700; color: var(--amber); font-family: var(--mono); }
+.pub-stat-lbl { font-size: .75rem; color: var(--muted); letter-spacing: .5px; text-transform: uppercase; }
 
 /* ── ABOUT ────────────────────────────────────────────────── */
 .about-grid {
@@ -540,6 +554,20 @@ p { color: var(--grey); line-height: 1.75; }
   margin-left: 8px;
 }
 
+.badge-appear {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid var(--teal);
+  color: var(--teal);
+  font-size: .68rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 3px;
+  vertical-align: middle;
+  margin-left: 8px;
+  letter-spacing: .3px;
+}
+
 /* ── PAPER THEME TAGS ─────────────────────────────────────── */
 .paper-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 .paper-tag {
@@ -574,6 +602,29 @@ p { color: var(--grey); line-height: 1.75; }
 .pub-filter-btn:hover { border-color: var(--amber-bd); color: var(--white); }
 .pub-filter-btn.active { border-color: var(--amber); color: var(--amber); background: var(--amber-bg); }
 .paper-card.hidden { display: none; }
+
+/* ── MEMBER PROFILE ICON ──────────────────────────────────── */
+.mem-profile-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(8,8,13,.7);
+  border: 1px solid var(--amber-bd);
+  color: var(--amber);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .8rem;
+  opacity: 0;
+  transform: scale(.8);
+  transition: opacity .2s, transform .2s;
+  text-decoration: none;
+}
+.mem-content:hover .mem-profile-btn { opacity: 1; transform: scale(1); }
 
 /* ── MEMBERS ──────────────────────────────────────────────── */
 .member-group-heading {
@@ -666,7 +717,7 @@ p { color: var(--grey); line-height: 1.75; }
 }
 
 /* ── COURSES ──────────────────────────────────────────────── */
-.tab-bar { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
+.tab-bar { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; justify-content: center; }
 .tab-btn {
   font-size: .85rem;
   font-weight: 500;
@@ -689,6 +740,14 @@ p { color: var(--grey); line-height: 1.75; }
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 28px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.course-card .course-title,
+.course-card .course-year,
+.course-card .course-desc {
+  width: 100%;
 }
 .course-title {
   font-size: 1.1rem;
@@ -836,11 +895,6 @@ p { color: var(--grey); line-height: 1.75; }
 .contact-form .form-row-full { margin-bottom: 12px; }
 
 /* ── FOOTER ───────────────────────────────────────────────── */
-footer {
-  border-top: 1px solid var(--line);
-  padding: 24px;
-  text-align: center;
-}
 footer p {
   font-size: .82rem;
   letter-spacing: 0;
@@ -918,7 +972,6 @@ footer p {
   background: var(--raised);
   border-top: 1px solid var(--line);
   padding: 32px 40px;
-  margin-left: var(--sidebar-w);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -931,7 +984,7 @@ footer p {
 }
 .site-footer a { color: var(--grey); text-decoration: none; }
 .site-footer a:hover { color: var(--amber); }
-.footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
 @media (max-width: 768px) {
   .site-footer { margin-left: 0; padding: 24px 16px; justify-content: center; text-align: center; }
   .footer-links { justify-content: center; }
@@ -1144,6 +1197,13 @@ footer p {
     <div class="sec-label">Publications</div>
     <h2 class="sec-title">Research Papers</h2>
 
+    <div class="pub-stats">
+      <div class="pub-stat"><div class="pub-stat-num">22</div><div class="pub-stat-lbl">Total</div></div>
+      <div class="pub-stat"><div class="pub-stat-num">3</div><div class="pub-stat-lbl">Journals</div></div>
+      <div class="pub-stat"><div class="pub-stat-num">10</div><div class="pub-stat-lbl">Conferences</div></div>
+      <div class="pub-stat"><div class="pub-stat-num">9</div><div class="pub-stat-lbl">Workshops</div></div>
+    </div>
+
     <div class="pub-filters" id="pub-filters">
       <button class="pub-filter-btn active" data-filter="all">All</button>
       <button class="pub-filter-btn" data-filter="journal">Journal</button>
@@ -1153,8 +1213,8 @@ footer p {
 
     <!-- TACO 2026 -->
     <div class="paper-card" data-type="journal">
-      <span class="paper-venue">TACO 2026</span>
-      <p class="paper-title">S. Kumar, V. Kumar, and S. Bhalachandra, "Power Scheduling for Maximizing Throughput and Fairness in Co-running Applications", in <em>ACM Transactions on Architecture and Code Optimization (TACO)</em>, 2026 (to appear).</p>
+      <span class="paper-venue">TACO 2026 <span class="badge-appear">To Appear</span></span>
+      <p class="paper-title">S. Kumar, V. Kumar, and S. Bhalachandra, "Power Scheduling for Maximizing Throughput and Fairness in Co-running Applications", in <em>ACM Transactions on Architecture and Code Optimization (TACO)</em>, 2026.</p>
       <div class="paper-actions">
         <button class="tag-btn" onclick="toggleAbstract('p-taco26')">Abstract</button>
       </div>
@@ -1729,10 +1789,6 @@ footer p {
   </div>
 </div>
 
-<!-- ═══════════════════════════ FOOTER ═══════════════════════════════ -->
-<footer>
-  <p>Copyright &copy; 2026 HiPeC Lab &nbsp;·&nbsp; IIIT-Delhi &nbsp;·&nbsp; All rights reserved.</p>
-</footer>
 
 <!-- ═══════════════════════════ SCRIPTS ══════════════════════════════ -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -1768,6 +1824,45 @@ function updateActiveLink(){
 }
 window.addEventListener('scroll', updateActiveLink);
 updateActiveLink();
+
+/* ── Keyboard section navigation ── */
+(function(){
+  var sectionIds = ['hero','news','research','members','courses','openings','funding','gallery','links','contact'];
+  document.addEventListener('keydown', function(e){
+    var tag = document.activeElement.tagName;
+    if(tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+    var dir = 0;
+    if(e.key === 'ArrowDown' || e.key === 'j') dir = 1;
+    else if(e.key === 'ArrowUp' || e.key === 'k') dir = -1;
+    else return;
+    e.preventDefault();
+    var current = 0;
+    var scrollY = window.scrollY + window.innerHeight / 2;
+    sectionIds.forEach(function(id, i){
+      var el = document.getElementById(id);
+      if(el && el.offsetTop <= scrollY) current = i;
+    });
+    var next = Math.min(Math.max(current + dir, 0), sectionIds.length - 1);
+    var target = document.getElementById(sectionIds[next]);
+    if(target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+})();
+
+/* ── Member profile icons ── */
+(function(){
+  document.querySelectorAll('.mem-content').forEach(function(card){
+    var link = card.querySelector('.mem-name a');
+    if(!link) return;
+    var btn = document.createElement('a');
+    btn.className = 'mem-profile-btn';
+    btn.href = link.href;
+    btn.target = '_blank';
+    btn.rel = 'noopener';
+    btn.setAttribute('aria-label', 'View profile');
+    btn.innerHTML = '<i class="fa fa-external-link"></i>';
+    card.appendChild(btn);
+  });
+})();
 
 /* ── Back to top ── */
 (function(){
