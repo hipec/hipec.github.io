@@ -901,10 +901,45 @@ footer p {
   .sec-label, .sec-title { font-size: 1.4rem; }
   .hero-cta { flex-direction: column; }
 }
+#back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 1500;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--raised);
+  border: 1px solid var(--amber-bd);
+  color: var(--amber);
+  font-size: 1.1rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s, background .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#back-to-top.visible { opacity: 1; pointer-events: auto; }
+#back-to-top:hover { background: var(--amber-bg); }
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: var(--amber);
+  z-index: 2000;
+  transition: width .1s linear;
+}
 </style>
 </head>
 
 <body>
+
+<div id="progress-bar"></div>
+<button id="back-to-top" aria-label="Back to top">↑</button>
 
 <!-- ══════════════════════ MOBILE HAMBURGER ═══════════════════════════ -->
 <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Open menu">
@@ -1676,6 +1711,26 @@ function updateActiveLink(){
 }
 window.addEventListener('scroll', updateActiveLink);
 updateActiveLink();
+
+/* ── Back to top ── */
+(function(){
+  var btn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', function(){
+    btn.classList.toggle('visible', window.scrollY > 300);
+  });
+  btn.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+
+/* ── Scroll progress bar ── */
+(function(){
+  var bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', function(){
+    var pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+    bar.style.width = Math.min(pct, 100) + '%';
+  });
+})();
 
 /* ── News older toggle ── */
 (function(){
