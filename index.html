@@ -27,6 +27,12 @@
 /* ── RESET & VARIABLES ────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
 
 :root {
   --void:     #08080d;
@@ -967,6 +973,20 @@ footer p {
   .sec-label, .sec-title { font-size: 1.4rem; }
   .hero-cta { flex-direction: column; }
 }
+/* ── SCROLL ANIMATIONS ────────────────────────────────────── */
+.anim-fade {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.anim-fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .anim-fade { opacity: 1; transform: none; transition: none; }
+}
+
 /* ── FOOTER ───────────────────────────────────────────────── */
 .site-footer {
   background: var(--raised);
@@ -1807,6 +1827,23 @@ document.querySelectorAll('.sidebar-nav a').forEach(function(a){
   a.addEventListener('click', closeSidebar);
 });
 
+/* ── Swipe gesture for mobile sidebar ── */
+(function(){
+  var touchStartX = 0, touchStartY = 0;
+  var SWIPE_THRESHOLD = 60, EDGE_ZONE = 40;
+  document.addEventListener('touchstart', function(e){
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  document.addEventListener('touchend', function(e){
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    var dy = e.changedTouches[0].clientY - touchStartY;
+    if(Math.abs(dy) > Math.abs(dx)) return; // vertical scroll, ignore
+    if(dx > SWIPE_THRESHOLD && touchStartX < EDGE_ZONE) openSidebar();
+    else if(dx < -SWIPE_THRESHOLD) closeSidebar();
+  }, { passive: true });
+})();
+
 /* ── Sidebar: highlight active section on scroll ── */
 var sidebarLinks = document.querySelectorAll('.sidebar-nav a');
 var sections = Array.from(sidebarLinks).map(function(a){
@@ -1824,6 +1861,25 @@ function updateActiveLink(){
 }
 window.addEventListener('scroll', updateActiveLink);
 updateActiveLink();
+
+/* ── Scroll animations ── */
+(function(){
+  var targets = document.querySelectorAll(
+    '.paper-card, .mem-container, .course-card, .news-item, ' +
+    '.two-col > *, .funding-item, .video-grid > *, ' +
+    '.sec-label, .sec-title, .pub-stats, .about-grid > *, .gallery-grid > *'
+  );
+  targets.forEach(function(el){ el.classList.add('anim-fade'); });
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  targets.forEach(function(el){ observer.observe(el); });
+})();
 
 /* ── Keyboard section navigation ── */
 (function(){
