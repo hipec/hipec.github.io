@@ -540,6 +540,18 @@ p { color: var(--grey); line-height: 1.75; }
   margin-left: 8px;
 }
 
+/* ── PAPER THEME TAGS ─────────────────────────────────────── */
+.paper-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.paper-tag {
+  font-size: .73rem;
+  padding: 2px 9px;
+  border-radius: 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  letter-spacing: .3px;
+}
+
 /* ── PUBLICATION FILTERS ──────────────────────────────────── */
 .pub-filters {
   display: flex;
@@ -1146,6 +1158,7 @@ footer p {
       <div class="paper-actions">
         <button class="tag-btn" onclick="toggleAbstract('p-taco26')">Abstract</button>
       </div>
+      <div class="paper-tags"><span class="paper-tag">power management</span><span class="paper-tag">energy efficiency</span><span class="paper-tag">multicore</span><span class="paper-tag">co-running</span></div>
       <div class="paper-abstract" id="p-taco26">
         <p>Due to the significant cost associated with power consumption, hardware overprovisioning is widely used to cap processor power consumption and improve the average power utilization of servers in data centers and nodes in HPC clusters. However, uniformly capping power across sockets in multiprocessor servers can lead to performance degradation for co-running applications due to workload variability. Existing solutions primarily focus on cluster-level power management, making limited use of power scheduling within multi-socket servers or processor frequency scaling to regulate power consumption under power constraints.</p>
         <p>This paper introduces Fulcrum, a novel power management library for co-running parallel applications on multi-socket, multi-core servers, independent of the underlying parallel programming model. Fulcrum dynamically redistributes power on a power-constrained multi-socket server to maximize throughput and fairness for co-running applications without requiring prior knowledge of application characteristics. Our results show that Fulcrum improves system throughput (geometric mean) by 26.3% under low power caps and by up to 5.3% under higher power caps, while delivering power efficiency improvements of 27.7–8.4% at the respective power caps.</p>
@@ -1162,6 +1175,7 @@ footer p {
         <a href="./ppt/hipc25.pdf" target="_blank"><button class="tag-btn link">Slides</button></a>
         <a href="https://youtu.be/YewXOkY2K2E" target="_blank"><button class="tag-btn link">Video</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">energy efficiency</span><span class="paper-tag">resource management</span><span class="paper-tag">co-running</span><span class="paper-tag">multicore</span></div>
       <div class="paper-abstract" id="p-hipc25">
         <p>Modern multiprocessor systems, with their abundance of cores and sockets, make the simultaneous execution of multiple applications essential for maximizing system utilization. However, the performance and energy efficiency of co-executing applications are highly sensitive to thread placement, core allocation, and both core and uncore frequency settings. Existing dynamic resource allocation solutions often rely on model-based approaches, require intrusive modifications to the parallel runtime, or lack a unified framework.</p>
         <p>This paper presents Harmonizer, a novel dynamic resource optimization library for co-running applications on multiprocessor systems to improve overall system throughput and energy efficiency. Our results show that Harmonizer reduces energy consumption by 8.8% to 35% (20.5% geometric mean) and improves throughput by 4.8% (geometric mean) compared to the default Linux scheduler. Compared to two state-of-the-art approaches, it achieves up to 28.6% energy savings and 15.8% higher throughput.</p>
@@ -1178,6 +1192,7 @@ footer p {
         <a href="./papers/eduhpc-sc25.pdf" target="_blank"><button class="tag-btn link">Slides</button></a>
         <a href="./papers/eduhpc-sc25.m4a" target="_blank"><button class="tag-btn link">Audio</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">education</span><span class="paper-tag">task parallelism</span><span class="paper-tag">runtime systems</span></div>
       <div class="paper-abstract" id="p-scw25">
         <p>Conventional parallel programming using explicit multithreading over modern multicore processors imposes significant complexity in organizing and balancing work across threads. Task-based models simplify parallel programming using runtimes that handle task scheduling and resource management, improving scalability and reducing developer effort.</p>
         <p>This paper presents the structure and experiences of teaching the Parallel Runtimes for Modern Processors course (PRMP) at IIIT Delhi. Students implement a basic task-based parallel programming model in the async–finish style, then gradually improve both the model and the runtime. We conclude with a qualitative and quantitative evaluation of three offerings of PRMP, showing significant improvement in students' understanding of parallel program execution.</p>
@@ -1194,6 +1209,7 @@ footer p {
         <a href="./papers/slide-europar25.pdf" target="_blank"><button class="tag-btn link">Slides</button></a>
         <a href="./papers/talk-europar25.m4a" target="_blank"><button class="tag-btn link">Audio</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">power management</span><span class="paper-tag">energy efficiency</span><span class="paper-tag">co-running</span><span class="paper-tag">multicore</span></div>
       <div class="paper-abstract" id="p-ep25">
         <p>Hardware overprovisioning is a widely used technique to improve the average power utilization of computing systems by capping the processor's power consumption. However, applying a uniform power cap across multiprocessor system sockets can significantly impact co-running applications due to workload variations.</p>
         <p>This paper introduces KarmaPM, a novel power management library for co-running applications on multiprocessor systems, based on application power donation karmas. KarmaPM dynamically redistributes power bidirectionally across sockets to improve overall system throughput. Our results show that KarmaPM improved system throughput (geometric mean) by 13.2% at lower power caps and 6.6% at higher power caps, with improvements of 12.5% and 4.4% over state-of-the-art approaches.</p>
@@ -1207,6 +1223,7 @@ footer p {
       <div class="paper-actions">
         <a href="https://doi.org/10.1063/5.0240113" target="_blank"><button class="tag-btn link">Paper</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">fluid dynamics</span><span class="paper-tag">simulation</span><span class="paper-tag">interdisciplinary</span></div>
     </div>
 
     <!-- CCPE 2024 -->
@@ -1217,6 +1234,7 @@ footer p {
         <button class="tag-btn" onclick="toggleAbstract('p-ccpe24')">Abstract</button>
         <a href="papers/amoeba-ccpe24.pdf" target="_blank"><button class="tag-btn link">Paper</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">energy efficiency</span><span class="paper-tag">task parallelism</span><span class="paper-tag">graph algorithms</span><span class="paper-tag">multicore</span></div>
       <div class="paper-abstract" id="p-ccpe24">
         <p>Detecting an accurate community structure is a crucial task in network analysis. This paper introduces Amoeba, a task parallel implementation of a permanence-based community detection algorithm designed for multicore processors. It uses dynamic tasking to schedule inherent irregular computation, and can dynamically adapt the total number of parallel threads for improved energy efficiency. Amoeba achieves a geometric mean speedup of 15.3× over its sequential implementation and energy savings of 12.4% over its non-adaptive implementation.</p>
       </div>
@@ -1229,6 +1247,7 @@ footer p {
       <div class="paper-actions">
         <a href="https://vivkumar.github.io/papers/hipc22.pdf" target="_blank"><button class="tag-btn link">Paper</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">energy efficiency</span><span class="paper-tag">power management</span><span class="paper-tag">multicore</span></div>
     </div>
 
     <!-- EduHiPC 2021 -->
@@ -1240,6 +1259,7 @@ footer p {
         <a href="https://tcpp.cs.gsu.edu/curriculum/?q=system/files/3.EDUHIPC-21_paper_6.pdf" target="_blank"><button class="tag-btn link">Paper</button></a>
         <a href="https://vivkumar.github.io/talk/eduhipc21.mp4" target="_blank"><button class="tag-btn link">Video</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">education</span><span class="paper-tag">task parallelism</span><span class="paper-tag">parallel programming</span></div>
       <div class="paper-abstract" id="p-eduhipc21">
         <p>Multicore processors are ubiquitous. In this paper, we present the structure and experience of teaching the Foundations of Parallel Programming course (FPP) at IIIT Delhi using a task-based parallel programming model, Habanero C/C++ Library (HClib). FPP covers a wide breadth of topics emphasizing both high productivity and high performance, offered in the spring semester for undergraduate and postgraduate students since 2017.</p>
       </div>
@@ -1254,6 +1274,7 @@ footer p {
         <a href="https://arxiv.org/pdf/2110.00617.pdf" target="_blank"><button class="tag-btn link">Paper</button></a>
         <a href="https://dl.acm.org/doi/abs/10.1145/3458817.3476163#video_stream_uuid%3A6a3d27af-ed5e-4c27-987b-2f3e94f4de63" target="_blank"><button class="tag-btn link">Video</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">energy efficiency</span><span class="paper-tag">DVFS</span><span class="paper-tag">runtime systems</span><span class="paper-tag">multicore</span></div>
       <div class="paper-abstract" id="p-sc21">
         <p>A low-cap power budget is challenging for exascale computing. This paper proposes Cuttlefish, a programming model oblivious C/C++ library for achieving energy efficiency in multicore parallel programs running over Intel processors. An online profiler periodically profiles model-specific registers to discover a running application's memory access pattern. Using a combination of DVFS and UFS, Cuttlefish dynamically adapts the processor's core and uncore frequencies, achieving geometric mean energy savings of 19.4% with a 3.6% slowdown.</p>
       </div>
@@ -1269,6 +1290,7 @@ footer p {
         <a href="https://vivkumar.github.io/papers/hipc2020-shortppt.pdf" target="_blank"><button class="tag-btn link">Slides (Short)</button></a>
         <a href="https://vivkumar.github.io/papers/hipc2020-verboseppt.pdf" target="_blank"><button class="tag-btn link">Slides (Verbose)</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">work-stealing</span><span class="paper-tag">NUMA</span><span class="paper-tag">task parallelism</span><span class="paper-tag">runtime systems</span></div>
       <div class="paper-abstract" id="p-hipc20">
         <p>This paper presents PufferFish, a new async–finish parallel programming model and work-stealing runtime for NUMA systems that provide a close coupling of the data-affinity hints provided for an asynchronous task with the Hierarchical Place Trees (HPTs) in HClib. PufferFish introduces Hierarchical Elastic Tasks (HET) that improve locality by shrinking to run on a single worker or puffing across multiple workers depending on work imbalance. On a 32-core NUMA AMD EPYC processor, PufferFish achieves a geometric mean speedup of 1.5× over HPT and 1.9× over random work-stealing in CilkPlus.</p>
       </div>
@@ -1283,6 +1305,7 @@ footer p {
         <a href="https://vivkumar.github.io/papers/IWOMP2019.pdf" target="_blank"><button class="tag-btn link">Paper</button></a>
         <a href="https://vivkumar.github.io/papers/IWOMP2019_slides.pdf" target="_blank"><button class="tag-btn link">Slides</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">OpenMP</span><span class="paper-tag">heterogeneous</span><span class="paper-tag">work-stealing</span></div>
       <div class="paper-abstract" id="p-iwomp19">
         <p>This paper proposes HetroOMP, an extension of the OpenMP accelerator model supporting a new hetro clause that enables computation to execute simultaneously across both host and accelerator devices using standard tasking and work-sharing pragmas. We implemented a proof-of-concept work-stealing HetroOMP runtime for the TI Keystone-II MPSoC (4 ARM CPUs + 8 DSP processors), achieving a geometric mean speedup of 3.6× compared to using only the OpenMP accelerator model.</p>
       </div>
@@ -1298,6 +1321,7 @@ footer p {
         <a href="https://vivkumar.github.io/papers/europar2019_slides.pdf" target="_blank"><button class="tag-btn link">Slides</button></a>
         <a href="https://vivkumar.github.io/talk/europar2019.m4a" target="_blank"><button class="tag-btn link">Audio</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">work-stealing</span><span class="paper-tag">speculative parallelism</span><span class="paper-tag">task parallelism</span></div>
       <div class="paper-abstract" id="p-ep19">
         <p>This paper proposes Featherlight, a new programming model for speculative task parallelism that satisfies the serial elision property and doesn't require any task cancellation checks. We show that Featherlight improves productivity through a classroom-based study. Our task cancellation technique exploits runtime mechanisms in managed runtimes and achieves a geometric mean speedup of 1.6× over the popular Java Fork/Join framework on a 20-core machine.</p>
       </div>
@@ -1312,6 +1336,7 @@ footer p {
         <a href="https://vivkumar.github.io/papers/ashes2017.pdf" target="_blank"><button class="tag-btn link">Paper</button></a>
         <a href="https://vivkumar.github.io/papers/ashes17-slides.pdf" target="_blank"><button class="tag-btn link">Slides</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">work-stealing</span><span class="paper-tag">scheduling</span><span class="paper-tag">runtime systems</span></div>
       <div class="paper-abstract" id="p-ipdpsw17">
         <p>This paper presents HiPER (a Highly Pluggable, Extensible, and Re-configurable scheduling framework for HPC), a pluggable API framework on top of a "generalized work-stealing" runtime to achieve composability of communication, accelerator, and other HPC libraries. HiPER enables cooperation of discrete software frameworks within a single process and demonstrates programmability improvements and performance improvements over hand-optimized benchmarks through unified and asynchronous scheduling.</p>
       </div>
@@ -1327,6 +1352,7 @@ footer p {
         <a href="https://vivkumar.github.io/papers/slides_ia3_2016.pdf" target="_blank"><button class="tag-btn link">Slides</button></a>
         <a href="https://vivkumar.github.io/talk/ia3_2016.m4a" target="_blank"><button class="tag-btn link">Audio</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">work-stealing</span><span class="paper-tag">distributed</span><span class="paper-tag">PGAS</span></div>
       <div class="paper-abstract" id="p-ia316">
         <p>This paper presents SuccessOnlyWS, a novel load-aware distributed work-stealing strategy in HabaneroUPC++ that overcomes failed steal attempts by introducing a new policy for moving work from busy to idle processors. Evaluated on up to 12,288 cores of Edison (CRAY-XC30), SuccessOnlyWS provides performance improvements up to 7% over the baseline approach.</p>
       </div>
@@ -1342,6 +1368,7 @@ footer p {
         <a href="https://vivkumar.github.io/papers/slides_pppj16.pdf" target="_blank"><button class="tag-btn link">Slides</button></a>
         <a href="https://vivkumar.github.io/talk/pppj16.m4a" target="_blank"><button class="tag-btn link">Audio</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">work-stealing</span><span class="paper-tag">task parallelism</span><span class="paper-tag">Java</span></div>
       <div class="paper-abstract" id="p-pppj16">
         <p>This paper presents five Java annotations for achieving asynchronous task parallelism and data-centric concurrency control, allowing use of a highly efficient work-stealing scheduler. Evaluated by refactoring classes from existing multithreaded open source projects, our annotations significantly reduce programming effort while achieving performance improvements up to 30% compared to conventional approaches.</p>
       </div>
@@ -1356,6 +1383,7 @@ footer p {
         <a href="https://vivkumar.github.io/papers/asyncshmem1.pdf" target="_blank"><button class="tag-btn link">Paper</button></a>
         <a href="http://www.csm.ornl.gov/workshops/openshmem2016/Presentations/P19_Integrating_Asynchronous_Task_Parallelism_with_OpenSHMEM.pdf" target="_blank"><button class="tag-btn link">Slides</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">PGAS</span><span class="paper-tag">work-stealing</span><span class="paper-tag">distributed</span></div>
       <div class="paper-abstract" id="p-shmem16">
         <p>This paper introduces AsyncSHMEM, a PGAS library that integrates OpenSHMEM with a thread-pool-based work-stealing runtime. AsyncSHMEM makes OpenSHMEM more adaptive by taking advantage of asynchronous computation to hide data transfer latencies, interoperate with tasks, improve load balancing, and improve locality. Experiments on the Titan supercomputer show AsyncSHMEM is competitive for regular workloads and significantly outperforms OpenSHMEM+OpenMP on event-driven applications.</p>
       </div>
@@ -1371,6 +1399,7 @@ footer p {
         <a href="https://vivkumar.github.io/papers/slides_hpec2015.pdf" target="_blank"><button class="tag-btn link">Slides</button></a>
         <a href="https://vivkumar.github.io/talk/hpec15.m4a" target="_blank"><button class="tag-btn link">Audio</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">work-stealing</span><span class="paper-tag">heterogeneous</span><span class="paper-tag">DSP</span></div>
       <div class="paper-abstract" id="p-hpec15">
         <p>This paper presents HC-K2H, a programming model and runtime for the TI Keystone II Hawking platform (4 ARM CPUs + 8 DSP processors). We design a hybrid work-stealing runtime allowing tasks to be created and executed on both ARM and DSP, with seamless synchronization regardless of which processor runs them. Task-parallel benchmarks on a Hawking board show excellent scaling compared to sequential single-ARM implementations.</p>
       </div>
@@ -1386,6 +1415,7 @@ footer p {
         <a href="https://vivkumar.github.io/papers/slides_pgas14.pdf" target="_blank"><button class="tag-btn link">Slides</button></a>
         <a href="https://vivkumar.github.io/talk/pgas14_talk.m4a" target="_blank"><button class="tag-btn link">Audio</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">PGAS</span><span class="paper-tag">work-stealing</span><span class="paper-tag">distributed</span></div>
       <div class="paper-abstract" id="p-pgas14">
         <p>This paper introduces Habanero-UPC++, a compiler-free PGAS library that supports tight integration of intra-place and inter-place parallelism. Built on UPC++ and HClib, it uses C++11 lambdas to avoid compiler support while retaining syntactic convenience. Evaluated using two benchmarks scaled up to 6,000 cores, the library demonstrates significant programmability and performance benefits.</p>
       </div>
@@ -1400,6 +1430,7 @@ footer p {
         <a href="https://vivkumar.github.io/papers/vee2014.pdf" target="_blank"><button class="tag-btn link">Paper</button></a>
         <a href="https://vivkumar.github.io/papers/slides_vee14.pdf" target="_blank"><button class="tag-btn link">Slides</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">work-stealing</span><span class="paper-tag">runtime systems</span><span class="paper-tag">JVM</span></div>
       <div class="paper-abstract" id="p-vee14">
         <p>This paper addresses dynamic overheads in work-stealing, which occur each time a steal takes place and are dominated by introspection of the victim's stack. We exploit low-overhead return barriers to reduce dynamic overhead by approximately half, resulting in total performance improvements of as much as 20%. Because we attack overheads directly due to stealing, we improve the scalability of work-stealing applications.</p>
       </div>
@@ -1415,6 +1446,7 @@ footer p {
         <a href="https://vivkumar.github.io/papers/oopsla2012.pdf" target="_blank"><button class="tag-btn link">Slides</button></a>
         <a href="https://vivkumar.github.io/talk/oopsla2012talk.m4a" target="_blank"><button class="tag-btn link">Audio</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">work-stealing</span><span class="paper-tag">runtime systems</span><span class="paper-tag">JVM</span></div>
       <div class="paper-abstract" id="p-oopsla12">
         <p>This paper identifies key sources of overhead in work-stealing schedulers and presents two significant refinements. Compared to orthodox sequential Java, our fastest design has an overhead of just 15%. By contrast, fork-join has a 2.3× overhead and the prior system has a 4.1× overhead. These results and our insight into overhead sources give further hope to an already promising technique for exploiting increasingly available hardware parallelism.</p>
       </div>
@@ -1429,6 +1461,7 @@ footer p {
         <a href="https://vivkumar.github.io/papers/vmil2012_paper.pdf" target="_blank"><button class="tag-btn link">Paper</button></a>
         <a href="https://vivkumar.github.io/papers/vmil2012.pdf" target="_blank"><button class="tag-btn link">Slides</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">work-stealing</span><span class="paper-tag">runtime systems</span><span class="paper-tag">JVM</span></div>
       <div class="paper-abstract" id="p-vmil12">
         <p>This paper identifies the overhead associated with managing work-stealing related information on a victim's execution stack and presents the design of using return barriers to reduce these overheads. Compared to our prior design, we reduce overheads by as much as 58% on classical work-stealing benchmarks.</p>
       </div>
@@ -1443,6 +1476,7 @@ footer p {
         <a href="https://vivkumar.github.io/papers/x10-2011ws.pdf" target="_blank"><button class="tag-btn link">Paper</button></a>
         <a href="http://x10.sourceforge.net/documentation/papers/X10Workshop2011/Kumarx10ws.pdf" target="_blank"><button class="tag-btn link">Slides</button></a>
       </div>
+      <div class="paper-tags"><span class="paper-tag">work-stealing</span><span class="paper-tag">runtime systems</span><span class="paper-tag">X10</span></div>
       <div class="paper-abstract" id="p-x10-11">
         <p>This paper proposes allowing thieves to extract state directly from within stack frames of the producer, using state-map information provided by a cooperative runtime compiler. This avoids stack-allocating state objects and drives down the cost of making state available for stealable work items. We discuss our design and preliminary findings inside the X10 work-stealing runtime and Jikes RVM.</p>
       </div>
