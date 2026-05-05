@@ -365,18 +365,6 @@ p { color: var(--grey); line-height: 1.75; }
   text-align: center;
 }
 
-/* ── PUB STATS ────────────────────────────────────────────── */
-.pub-stats {
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-  flex-wrap: wrap;
-  margin-top: -24px;
-  margin-bottom: 32px;
-}
-.pub-stat { text-align: center; }
-.pub-stat-num { font-size: 1.6rem; font-weight: 700; color: var(--amber); font-family: var(--mono); }
-.pub-stat-lbl { font-size: .75rem; color: var(--muted); letter-spacing: .5px; text-transform: uppercase; }
 
 /* ── ABOUT ────────────────────────────────────────────────── */
 .about-grid {
@@ -973,6 +961,29 @@ footer p {
   .sec-label, .sec-title { font-size: 1.4rem; }
   .hero-cta { flex-direction: column; }
 }
+/* ── SECTION CHIP ─────────────────────────────────────────── */
+#section-chip {
+  position: fixed;
+  bottom: 28px;
+  left: calc(var(--sidebar-w) + 20px);
+  z-index: 1500;
+  background: var(--raised);
+  border: 1px solid var(--line);
+  color: var(--grey);
+  font-family: var(--mono);
+  font-size: .75rem;
+  padding: 5px 12px;
+  border-radius: 20px;
+  letter-spacing: .5px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s;
+}
+#section-chip.visible { opacity: 1; }
+@media (max-width: 768px) {
+  #section-chip { left: 14px; bottom: 14px; }
+}
+
 /* ── SCROLL ANIMATIONS ────────────────────────────────────── */
 .anim-fade {
   opacity: 0;
@@ -1048,6 +1059,7 @@ footer p {
 
 <div id="progress-bar"></div>
 <button id="back-to-top" aria-label="Back to top">↑</button>
+<div id="section-chip"></div>
 
 <!-- ══════════════════════ MOBILE HAMBURGER ═══════════════════════════ -->
 <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Open menu">
@@ -1216,13 +1228,6 @@ footer p {
   <div class="section">
     <div class="sec-label">Publications</div>
     <h2 class="sec-title">Research Papers</h2>
-
-    <div class="pub-stats">
-      <div class="pub-stat"><div class="pub-stat-num">22</div><div class="pub-stat-lbl">Total</div></div>
-      <div class="pub-stat"><div class="pub-stat-num">3</div><div class="pub-stat-lbl">Journals</div></div>
-      <div class="pub-stat"><div class="pub-stat-num">10</div><div class="pub-stat-lbl">Conferences</div></div>
-      <div class="pub-stat"><div class="pub-stat-num">9</div><div class="pub-stat-lbl">Workshops</div></div>
-    </div>
 
     <div class="pub-filters" id="pub-filters">
       <button class="pub-filter-btn active" data-filter="all">All</button>
@@ -1850,6 +1855,8 @@ var sections = Array.from(sidebarLinks).map(function(a){
   var id = a.getAttribute('href').replace('#','');
   return document.getElementById(id);
 }).filter(Boolean);
+var chip = document.getElementById('section-chip');
+var sectionLabels = { hero:'Home', news:'News', research:'Research', members:'Members', courses:'Courses', openings:'Openings', funding:'Funding', gallery:'Gallery', links:'Links', contact:'Contact' };
 function updateActiveLink(){
   var scrollY = window.scrollY + 80;
   var active = sections[0];
@@ -1858,6 +1865,12 @@ function updateActiveLink(){
     var id = a.getAttribute('href').replace('#','');
     a.classList.toggle('active', active && active.id === id);
   });
+  if(chip){
+    var id = active ? active.id : 'hero';
+    var isHero = (id === 'hero' && window.scrollY < 100);
+    chip.textContent = '§ ' + (sectionLabels[id] || id);
+    chip.classList.toggle('visible', !isHero);
+  }
 }
 window.addEventListener('scroll', updateActiveLink);
 updateActiveLink();
@@ -1867,7 +1880,7 @@ updateActiveLink();
   var targets = document.querySelectorAll(
     '.paper-card, .mem-container, .course-card, .news-item, ' +
     '.two-col > *, .funding-item, .video-grid > *, ' +
-    '.sec-label, .sec-title, .pub-stats, .about-grid > *, .gallery-grid > *'
+    '.sec-label, .sec-title, .about-grid > *, .gallery-grid > *'
   );
   targets.forEach(function(el){ el.classList.add('anim-fade'); });
   var observer = new IntersectionObserver(function(entries){
