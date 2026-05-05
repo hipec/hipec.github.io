@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hipec.github.io/sitemap.xml

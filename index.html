@@ -6,6 +6,19 @@
   <title>HiPeC Lab — High Performance Computing @ IIIT-Delhi</title>
   <meta name="description" content="HiPeC Lab at IIIT-Delhi: adaptive runtime systems for high-performance, energy-efficient, and scalable computing.">
 
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://hipec.github.io/">
+  <meta property="og:title"       content="HiPeC Lab — High Performance Computing @ IIIT-Delhi">
+  <meta property="og:description" content="We build adaptive runtime systems that efficiently harness parallelism across diverse computing platforms while optimizing performance and energy.">
+  <meta property="og:image"       content="https://hipec.github.io/img/hipec.png">
+
+  <!-- Twitter / X card -->
+  <meta name="twitter:card"        content="summary">
+  <meta name="twitter:title"       content="HiPeC Lab — High Performance Computing @ IIIT-Delhi">
+  <meta name="twitter:description" content="We build adaptive runtime systems that efficiently harness parallelism across diverse computing platforms while optimizing performance and energy.">
+  <meta name="twitter:image"       content="https://hipec.github.io/img/hipec.png">
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/light-box.css">
   <link rel="stylesheet" href="css/fontAwesome.css">
@@ -392,10 +405,25 @@ p { color: var(--grey); line-height: 1.75; }
 
 /* ── NEWS ─────────────────────────────────────────────────── */
 .news-scroll {
-  max-height: 520px;
-  overflow-y: auto;
   padding-right: 8px;
 }
+.news-older-wrap { display: none; }
+.news-older-wrap.open { display: block; }
+.news-toggle-btn {
+  display: block;
+  margin: 18px auto 0;
+  background: none;
+  border: 1px solid var(--amber-bd);
+  color: var(--amber);
+  font-family: var(--sans);
+  font-size: .88rem;
+  padding: 7px 22px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  letter-spacing: .5px;
+  transition: background .2s;
+}
+.news-toggle-btn:hover { background: var(--amber-bg); }
 .news-year {
   font-size: 1.1rem;
   font-weight: 700;
@@ -512,6 +540,29 @@ p { color: var(--grey); line-height: 1.75; }
   margin-left: 8px;
 }
 
+/* ── PUBLICATION FILTERS ──────────────────────────────────── */
+.pub-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+.pub-filter-btn {
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--grey);
+  font-family: var(--sans);
+  font-size: .85rem;
+  padding: 6px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all .18s;
+}
+.pub-filter-btn:hover { border-color: var(--amber-bd); color: var(--white); }
+.pub-filter-btn.active { border-color: var(--amber); color: var(--amber); background: var(--amber-bg); }
+.paper-card.hidden { display: none; }
+
 /* ── MEMBERS ──────────────────────────────────────────────── */
 .member-group-heading {
   font-size: 1rem;
@@ -535,12 +586,15 @@ p { color: var(--grey); line-height: 1.75; }
   height: 360px;
   overflow-x: auto;
   overflow-y: hidden;
-  white-space: nowrap;
+  padding-bottom: 10px;
+}
+.alumni_inner {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   gap: 40px;
-  padding-bottom: 10px;
+  width: max-content;
+  min-width: 100%;
+  justify-content: center;
 }
 .mem-container {
   display: inline-block;
@@ -926,7 +980,7 @@ footer p {
     <h2 class="sec-title">Who We Are</h2>
     <div class="about-text">
       <div class="about-logo">
-        <img src="img/hipec.png" alt="HiPeC Lab">
+        <img loading="lazy" src="img/hipec.png" alt="HiPeC Lab">
       </div>
       <p>The computing landscape is undergoing a fundamental shift. Performance gains no longer come from faster processors, but from increasing parallelism and hardware diversity. Modern systems integrate many-core processors, complex memory hierarchies, and specialized accelerators, driven in large part by the demands of AI/ML workloads and exascale computing. This growing complexity makes efficient resource management increasingly challenging, requiring a careful balance between performance, energy efficiency, and programmer productivity.</p>
       <p>Our research addresses these challenges by designing adaptive, hardware-aware runtime systems that dynamically respond to application behavior and system conditions. By bridging high-level programming abstractions with low-level hardware insights, we enable efficient execution across diverse platforms—from AI-driven workloads to large-scale exascale systems. Our goal is to deliver portable, high-performance, and energy-efficient execution that transparently exploits parallelism while reducing complexity for developers.</p>
@@ -961,6 +1015,10 @@ footer p {
       <div class="news-item">Sunil received student scholarship from EuroPar'25 conference.</div>
       <div class="news-item">Artifact for Sunil's EuroPAR'25 paper has been accepted.</div>
       <div class="news-item">Sunil's paper accepted in EuroPAR'25.</div>
+
+      <button class="news-toggle-btn" id="news-toggle">Show older news ▾</button>
+
+      <div class="news-older-wrap" id="news-older">
 
       <div class="news-year">2024</div>
       <div class="news-item">Sunil's poster accepted in HiPC SRS.</div>
@@ -1004,6 +1062,8 @@ footer p {
       <div class="news-item">Thanks to Texas Instruments for donating EVMK2H development board.</div>
       <div class="news-item">Paper in the AsHES workshop.</div>
       <div class="news-item">Dr. Vivek joined IIIT-Delhi as an Assistant Professor.</div>
+
+      </div>
     </div>
   </div>
 </div>
@@ -1014,8 +1074,15 @@ footer p {
     <div class="sec-label">Publications</div>
     <h2 class="sec-title">Research Papers</h2>
 
+    <div class="pub-filters" id="pub-filters">
+      <button class="pub-filter-btn active" data-filter="all">All</button>
+      <button class="pub-filter-btn" data-filter="journal">Journal</button>
+      <button class="pub-filter-btn" data-filter="conference">Conference</button>
+      <button class="pub-filter-btn" data-filter="workshop">Workshop</button>
+    </div>
+
     <!-- TACO 2026 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="journal">
       <span class="paper-venue">TACO 2026</span>
       <p class="paper-title">S. Kumar, V. Kumar, and S. Bhalachandra, "Power Scheduling for Maximizing Throughput and Fairness in Co-running Applications", in <em>ACM Transactions on Architecture and Code Optimization (TACO)</em>, 2026 (to appear).</p>
       <div class="paper-actions">
@@ -1028,7 +1095,7 @@ footer p {
     </div>
 
     <!-- HiPC 2025 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="conference">
       <span class="paper-venue">HiPC 2025 <span class="badge-best">Best Paper Award</span></span>
       <p class="paper-title">V. Jain, V. Parashar, V. Kumar, and C. Sur, "Energy-Aware Runtime Resource Harmonizer for Co-running Applications", in <em>32nd IEEE International Conference on High Performance Computing, Data, and Analytics</em>, Hyderabad, India, December 2025.</p>
       <div class="paper-actions">
@@ -1044,7 +1111,7 @@ footer p {
     </div>
 
     <!-- SC-W 2025 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="workshop">
       <span class="paper-venue">SC Workshop 2025</span>
       <p class="paper-title">Vivek Kumar, "Teaching Task-Based Parallel Programming with a Runtime Systems-Aware Perspective", <em>SC25-W: Workshops of the International Conference for High Performance Computing, Networking, Storage and Analysis</em>, St. Louis, MO, USA, November 2025.</p>
       <div class="paper-actions">
@@ -1060,7 +1127,7 @@ footer p {
     </div>
 
     <!-- EuroPar 2025 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="conference">
       <span class="paper-venue">EuroPar 2025</span>
       <p class="paper-title">S. Kumar, and V. Kumar, "KarmaPM: Reward-Driven Power Manager", in <em>31st International European Conference on Parallel and Distributed Computing</em>, LNCS, Springer, Dresden, Germany, August 2025.</p>
       <div class="paper-actions">
@@ -1076,7 +1143,7 @@ footer p {
     </div>
 
     <!-- POF 2024 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="journal">
       <span class="paper-venue">Physics of Fluids 2024</span>
       <p class="paper-title">M. Bhatt, T. Chauhan, R. Agrawal, M. Kumar, V. Kumar, and S. Sircar, "Elastoinertial Stability Analysis and Structure Formation in Viscoelastic Subdiffusive Pipe Flow", in <em>Physics of Fluids</em>, 2024.</p>
       <div class="paper-actions">
@@ -1085,7 +1152,7 @@ footer p {
     </div>
 
     <!-- CCPE 2024 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="journal">
       <span class="paper-venue">CCPE 2024</span>
       <p class="paper-title">H. Saini, V. Kumar, and T. Chakraborty, "Energy Efficient Permanence-based Community Detection Algorithm", in <em>Concurrency and Computation: Practice and Experience</em>, 2024.</p>
       <div class="paper-actions">
@@ -1098,7 +1165,7 @@ footer p {
     </div>
 
     <!-- HiPC SRS 2022 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="workshop">
       <span class="paper-venue">HiPC SRS 2022</span>
       <p class="paper-title">S. Kumar, V. Kumar, and S. Bhalachandra, "Energy-Efficient Execution of Multicore Parallel Programs under Limited Power Budget", in <em>29th IEEE International Conference on High Performance Computing, Data, and Analytics Student Research Symposium</em>, Bangalore, India, December 2022.</p>
       <div class="paper-actions">
@@ -1107,7 +1174,7 @@ footer p {
     </div>
 
     <!-- EduHiPC 2021 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="workshop">
       <span class="paper-venue">EduHiPC 2021</span>
       <p class="paper-title">V. Kumar, "Teaching High Productivity and High Performance in an Introductory Parallel Programming Course", in <em>Proceedings of the 28th International Conference on High Performance Computing, Data and Analytics Workshop (HiPCW)</em>, Bangalore, India, December 2021.</p>
       <div class="paper-actions">
@@ -1121,7 +1188,7 @@ footer p {
     </div>
 
     <!-- SC 2021 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="conference">
       <span class="paper-venue">SC 2021</span>
       <p class="paper-title">S. Kumar, A. Gupta, V. Kumar, and S. Bhalachandra, "Cuttlefish: Library for Achieving Energy Efficiency in Multicore Parallel Programs", in <em>Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis (SC'21)</em>, St. Louis, MO, USA, November 2021.</p>
       <div class="paper-actions">
@@ -1135,7 +1202,7 @@ footer p {
     </div>
 
     <!-- HiPC 2020 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="conference">
       <span class="paper-venue">HiPC 2020</span>
       <p class="paper-title">V. Kumar, "PufferFish: NUMA-Aware Work-stealing Library using Elastic Tasks", in <em>27th IEEE International Conference on High Performance Computing, Data, and Analytics</em>, Pune, India, December 2020.</p>
       <div class="paper-actions">
@@ -1150,7 +1217,7 @@ footer p {
     </div>
 
     <!-- IWOMP 2019 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="workshop">
       <span class="paper-venue">IWOMP 2019</span>
       <p class="paper-title">V. Kumar, A. Tiwari, and G. Mitra, "HetroOMP: OpenMP for Hybrid Load Balancing Across Heterogeneous Processors", in <em>15th International Workshop on OpenMP</em>, LNCS, Springer, Auckland, New Zealand, September 2019.</p>
       <div class="paper-actions">
@@ -1164,7 +1231,7 @@ footer p {
     </div>
 
     <!-- EuroPar 2019 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="conference">
       <span class="paper-venue">EuroPar 2019</span>
       <p class="paper-title">V. Kumar, "Featherlight Speculative Task Parallelism", in <em>25th International European Conference on Parallel and Distributed Computing</em>, LNCS, Springer, Göttingen, Germany, August 2019.</p>
       <div class="paper-actions">
@@ -1179,7 +1246,7 @@ footer p {
     </div>
 
     <!-- IPDPSW 2017 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="workshop">
       <span class="paper-venue">IPDPSW 2017</span>
       <p class="paper-title">M. Grossman, V. Kumar, N. Vrvilo, Z. Budimlic, and V. Sarkar, "A Pluggable Framework for Composable HPC Scheduling Libraries", in <em>Proceedings of IEEE International Parallel and Distributed Processing Symposium Workshops</em>, Orlando, Florida, USA, May 2017.</p>
       <div class="paper-actions">
@@ -1193,7 +1260,7 @@ footer p {
     </div>
 
     <!-- IA3 2016 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="workshop">
       <span class="paper-venue">IA³ 2016</span>
       <p class="paper-title">V. Kumar, K. Murthy, V. Sarkar, and Y. Zheng, "Optimized Distributed Work-Stealing", in <em>6th International Workshop on Irregular Applications: Architectures and Algorithms (IA3)</em>, Salt Lake City, Utah, USA, November 2016 (co-located with SC16).</p>
       <div class="paper-actions">
@@ -1208,7 +1275,7 @@ footer p {
     </div>
 
     <!-- PPPJ 2016 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="conference">
       <span class="paper-venue">PPPJ 2016</span>
       <p class="paper-title">V. Kumar, J. Dolby, and S. M. Blackburn, "Integrating Asynchronous Task Parallelism and Data-centric Atomicity", at <em>The 13th International Conference on Principles and Practices of Programming on the Java Platform</em>, Lugano, Switzerland, August 2016.</p>
       <div class="paper-actions">
@@ -1223,7 +1290,7 @@ footer p {
     </div>
 
     <!-- OpenSHMEM 2016 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="workshop">
       <span class="paper-venue">OpenSHMEM 2016</span>
       <p class="paper-title">M. Grossman, V. Kumar, Z. Budimlic, and V. Sarkar, "Integrating Asynchronous Task Parallelism with OpenSHMEM", at <em>The 3rd workshop on OpenSHMEM and Related Technologies</em>, Baltimore, Maryland, USA, August 2016.</p>
       <div class="paper-actions">
@@ -1237,7 +1304,7 @@ footer p {
     </div>
 
     <!-- HPEC 2015 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="conference">
       <span class="paper-venue">HPEC 2015</span>
       <p class="paper-title">V. Kumar, A. Sbirlea, Z. Budimlic, D. Majeti and V. Sarkar, "Heterogeneous Work-stealing across CPU and DSP cores", at <em>The 19th International Conference on High Performance Extreme Computing</em>, Waltham, MA, USA, September 2015.</p>
       <div class="paper-actions">
@@ -1252,7 +1319,7 @@ footer p {
     </div>
 
     <!-- PGAS 2014 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="conference">
       <span class="paper-venue">PGAS 2014</span>
       <p class="paper-title">V. Kumar, Y. Zheng, V. Cave, Z. Budimlic and V. Sarkar, "HabaneroUPC++: a Compiler-free PGAS Library", at <em>The 8th International Conference on Partitioned Global Address Space Programming Models</em>, Eugene, Oregon, October 2014.</p>
       <div class="paper-actions">
@@ -1267,7 +1334,7 @@ footer p {
     </div>
 
     <!-- VEE 2014 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="conference">
       <span class="paper-venue">VEE 2014</span>
       <p class="paper-title">V. Kumar, S. M. Blackburn and D. Grove, "Friendly Barriers: Efficient Work-Stealing With Return Barriers", at <em>The 10th ACM SIGPLAN/SIGOPS International Conference on Virtual Execution Environments</em>, Salt Lake City, Utah, March 2014.</p>
       <div class="paper-actions">
@@ -1281,7 +1348,7 @@ footer p {
     </div>
 
     <!-- OOPSLA 2012 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="conference">
       <span class="paper-venue">OOPSLA 2012 <span class="badge-best">SIGPLAN Research Highlight</span></span>
       <p class="paper-title">V. Kumar, D. Frampton, S. M. Blackburn, D. Grove, and O. Tardieu, "Work-Stealing Without The Baggage", in <em>Proceedings of the 2012 ACM SIGPLAN Conference on Object-Oriented Programming Systems, Languages &amp; Applications (OOPSLA 2012)</em>, Tucson, AZ, October 2012. (selected for <a href="https://www.sigplan.org/Highlights/Papers/" target="_blank">SIGPLAN Communications of ACM Research Highlights</a>, 2013)</p>
       <div class="paper-actions">
@@ -1296,7 +1363,7 @@ footer p {
     </div>
 
     <!-- VMIL 2012 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="workshop">
       <span class="paper-venue">VMIL 2012</span>
       <p class="paper-title">V. Kumar and S. M. Blackburn, "Faster Work-Stealing With Return Barriers", at <em>The 6th workshop on Virtual Machines and Intermediate Languages (VMIL 2012)</em>, Tucson, AZ, October 2012.</p>
       <div class="paper-actions">
@@ -1310,7 +1377,7 @@ footer p {
     </div>
 
     <!-- X10 2011 -->
-    <div class="paper-card">
+    <div class="paper-card" data-type="workshop">
       <span class="paper-venue">X10 Workshop 2011</span>
       <p class="paper-title">V. Kumar, D. Frampton, D. Grove, O. Tardieu, and S. M. Blackburn, "Work-Stealing by Stealing States from Live Stack Frames of a Running Application", at <em>X10'11 Workshop collocated with PLDI 2011</em>, San Jose, CA, June 2011.</p>
       <div class="paper-actions">
@@ -1338,7 +1405,7 @@ footer p {
       <div class="mem-container">
         <div class="mem-content">
           <div class="mem-overlay"></div>
-          <img src="img/students/vivekk-1.jpg" alt="Vivek Kumar">
+          <img loading="lazy" src="img/students/vivekk-1.jpg" alt="Vivek Kumar">
           <div class="mem-details">
             <div class="mem-name"><a href="https://vivkumar.github.io/" target="_blank">Vivek Kumar</a></div>
             <p class="mem-role">Assistant Professor, IIIT-Delhi</p>
@@ -1351,60 +1418,68 @@ footer p {
     <!-- PhD Students -->
     <div class="member-group-heading">Current Students (PhD)</div>
     <div class="alumni_scroll">
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/sunil.jpeg" alt="Sunil Kumar"><div class="mem-details"><div class="mem-name"><a href="https://justasunil.github.io/" target="_blank">Sunil Kumar</a></div><p class="mem-role">PhD candidate (Google PhD Fellowship)</p><p class="mem-topic">Maximizing throughput and fairness in power-constrained systems</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/vanshikajain.jpg" alt="Vanshika Jain"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/vanshika-jain-822844196/" target="_blank">Vanshika Jain</a></div><p class="mem-role">PhD candidate</p><p class="mem-topic">Resource optimization on multiprocessor systems</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/spoorthi.jpeg" alt="Spoorthi S"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/spoorthi102003/" target="_blank">Spoorthi S</a></div><p class="mem-role">PhD candidate</p><p class="mem-topic">Energy efficient GPU computing</p></div></div></div>
+      <div class="alumni_inner">
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/sunil.jpeg" alt="Sunil Kumar"><div class="mem-details"><div class="mem-name"><a href="https://justasunil.github.io/" target="_blank">Sunil Kumar</a></div><p class="mem-role">PhD candidate (Google PhD Fellowship)</p><p class="mem-topic">Maximizing throughput and fairness in power-constrained systems</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/vanshikajain.jpg" alt="Vanshika Jain"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/vanshika-jain-822844196/" target="_blank">Vanshika Jain</a></div><p class="mem-role">PhD candidate</p><p class="mem-topic">Resource optimization on multiprocessor systems</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/spoorthi.jpeg" alt="Spoorthi S"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/spoorthi102003/" target="_blank">Spoorthi S</a></div><p class="mem-role">PhD candidate</p><p class="mem-topic">Energy efficient GPU computing</p></div></div></div>
+      </div>
     </div>
     <hr class="member-group-sep">
 
     <!-- Undergrads -->
     <div class="member-group-heading">Current Students (Undergrads)</div>
     <div class="alumni_scroll">
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/varun25.jpg" alt="Varun Golcha"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/varun-golcha-aa8117293/" target="_blank">Varun Golcha</a></div><p class="mem-role">B.Tech. Thesis</p><p class="mem-topic">Energy efficient work-stealing</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/ramanujan25.jpg" alt="Ramanujan Gopalan"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/ramanujan-gopalan-601670354" target="_blank">Ramanujan Gopalan</a></div><p class="mem-role">B.Tech. Thesis</p><p class="mem-topic">Energy efficient work-stealing</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/aryamaan25.jpg" alt="Aryamaan Singh"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/aryamaan-singh-b91170351" target="_blank">Aryamaan Singh</a></div><p class="mem-role">B.Tech. Thesis</p><p class="mem-topic">Heterogeneous CNN</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/shivam25.jpg" alt="Shivam JhunJhunuwala"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/shivam-jhunjhunuwala-895903290/" target="_blank">Shivam JhunJhunuwala</a></div><p class="mem-role">B.Tech. Thesis</p><p class="mem-topic">Energy Efficiency SIMD using Intel AVX</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/keerat25.jpg" alt="Keerat Singh"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/keerat-singh-06420a367/" target="_blank">Keerat Singh</a></div><p class="mem-role">B.Tech. Thesis</p><p class="mem-topic">Power usage of timesharing applications</p></div></div></div>
+      <div class="alumni_inner">
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/varun25.jpg" alt="Varun Golcha"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/varun-golcha-aa8117293/" target="_blank">Varun Golcha</a></div><p class="mem-role">B.Tech. Thesis</p><p class="mem-topic">Energy efficient work-stealing</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/ramanujan25.jpg" alt="Ramanujan Gopalan"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/ramanujan-gopalan-601670354" target="_blank">Ramanujan Gopalan</a></div><p class="mem-role">B.Tech. Thesis</p><p class="mem-topic">Energy efficient work-stealing</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/aryamaan25.jpg" alt="Aryamaan Singh"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/aryamaan-singh-b91170351" target="_blank">Aryamaan Singh</a></div><p class="mem-role">B.Tech. Thesis</p><p class="mem-topic">Heterogeneous CNN</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/shivam25.jpg" alt="Shivam JhunJhunuwala"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/shivam-jhunjhunuwala-895903290/" target="_blank">Shivam JhunJhunuwala</a></div><p class="mem-role">B.Tech. Thesis</p><p class="mem-topic">Energy Efficiency SIMD using Intel AVX</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/keerat25.jpg" alt="Keerat Singh"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/keerat-singh-06420a367/" target="_blank">Keerat Singh</a></div><p class="mem-role">B.Tech. Thesis</p><p class="mem-topic">Power usage of timesharing applications</p></div></div></div>
+      </div>
     </div>
     <hr class="member-group-sep">
 
     <!-- Thesis Alumni -->
     <div class="member-group-heading">Thesis Students (Alumni)</div>
     <div class="alumni_scroll">
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/rayyan.jpeg" alt="Rayyan Hussain"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/rayyan-hussain/" target="_blank">Rayyan Hussain</a></div><p class="mem-role">B.Tech. Thesis</p><p class="mem-topic">Affinity &amp; frequency optimization</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/soham.jpeg" alt="Soham Chitlangia"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/soham-chitlangia-82ba32229" target="_blank">Soham Chitlangia</a></div><p class="mem-role">B.Tech. Thesis</p><p class="mem-topic">Parallelisation of orbit computation</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/varun.jpeg" alt="Varun Prashar"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/varun-parashar-aa3516218" target="_blank">Varun Prashar</a></div><p class="mem-role">B.Tech. Thesis</p><p class="mem-topic">Energy efficient GPU computation</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/avatar.png" alt="Aakarsh Jain"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/aakarsh-jain-4aba91223" target="_blank">Aakarsh Jain</a></div><p class="mem-role">B.Tech. Thesis</p><p class="mem-topic">Scientific workflow optimization</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/raghav.jpeg" alt="Raghav Gupta"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/raghav0307/" target="_blank">Raghav Gupta</a></div><p class="mem-role">B.Tech.</p><p class="mem-topic">Fugu: adaptive concurrency throttling</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/hardik.jpeg" alt="Hardik Saini"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/hardik-saini-b5a609188/" target="_blank">Hardik Saini</a></div><p class="mem-role">B.Tech</p><p class="mem-topic">Energy efficient community detection</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/akshat.jpeg" alt="Akshat Gupta"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/akshat-gupta-401675192/" target="_blank">Akshat Gupta</a></div><p class="mem-role">B.Tech</p><p class="mem-topic">Energy efficiency library for multicore programs</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/aniansh.jpeg" alt="Aniansh Raj Singh"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/aniansh/" target="_blank">Aniansh Raj Singh</a></div><p class="mem-role">B.Tech</p><p class="mem-topic">Work-stealing runtime over CUDA GPUs</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/agamdeep.jpeg" alt="Agamdeep Bains"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/agamdeep-bains-9000ba213/" target="_blank">Agamdeep Bains</a></div><p class="mem-role">B.Tech</p><p class="mem-topic">Work-stealing runtime over CUDA GPUs</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/anuj.jpeg" alt="Anuj Yadav"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/anujxyadav/" target="_blank">Anuj Yadav</a></div><p class="mem-role">B.Tech</p><p class="mem-topic">Work-stealing task queues</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/aamleen.jpeg" alt="Aamleen Ahmed"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/aamleen-ahmed/" target="_blank">Aamleen Ahmed</a></div><p class="mem-role">B.Tech</p><p class="mem-topic">Work-stealing task queues</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/abhipray.jpg" alt="Abhiprayah Tiwari"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/abhiprayah-tiwari-a30b3017b/" target="_blank">Abhiprayah Tiwari</a></div><p class="mem-role">M.Tech</p><p class="mem-topic">OpenMP for heterogeneous processors</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/sujay.jpeg" alt="Sujay Raj"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/sujay-raj-shetty/" target="_blank">Sujay Raj</a></div><p class="mem-role">M.Tech</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/harsh.jpeg" alt="Harsh Parikh"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/harsh-parikh-842985ab/" target="_blank">Harsh Parikh</a></div><p class="mem-role">M.Tech</p></div></div></div>
+      <div class="alumni_inner">
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/rayyan.jpeg" alt="Rayyan Hussain"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/rayyan-hussain/" target="_blank">Rayyan Hussain</a></div><p class="mem-role">B.Tech. Thesis</p><p class="mem-topic">Affinity &amp; frequency optimization</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/soham.jpeg" alt="Soham Chitlangia"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/soham-chitlangia-82ba32229" target="_blank">Soham Chitlangia</a></div><p class="mem-role">B.Tech. Thesis</p><p class="mem-topic">Parallelisation of orbit computation</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/varun.jpeg" alt="Varun Prashar"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/varun-parashar-aa3516218" target="_blank">Varun Prashar</a></div><p class="mem-role">B.Tech. Thesis</p><p class="mem-topic">Energy efficient GPU computation</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/avatar.png" alt="Aakarsh Jain"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/aakarsh-jain-4aba91223" target="_blank">Aakarsh Jain</a></div><p class="mem-role">B.Tech. Thesis</p><p class="mem-topic">Scientific workflow optimization</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/raghav.jpeg" alt="Raghav Gupta"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/raghav0307/" target="_blank">Raghav Gupta</a></div><p class="mem-role">B.Tech.</p><p class="mem-topic">Fugu: adaptive concurrency throttling</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/hardik.jpeg" alt="Hardik Saini"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/hardik-saini-b5a609188/" target="_blank">Hardik Saini</a></div><p class="mem-role">B.Tech</p><p class="mem-topic">Energy efficient community detection</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/akshat.jpeg" alt="Akshat Gupta"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/akshat-gupta-401675192/" target="_blank">Akshat Gupta</a></div><p class="mem-role">B.Tech</p><p class="mem-topic">Energy efficiency library for multicore programs</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/aniansh.jpeg" alt="Aniansh Raj Singh"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/aniansh/" target="_blank">Aniansh Raj Singh</a></div><p class="mem-role">B.Tech</p><p class="mem-topic">Work-stealing runtime over CUDA GPUs</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/agamdeep.jpeg" alt="Agamdeep Bains"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/agamdeep-bains-9000ba213/" target="_blank">Agamdeep Bains</a></div><p class="mem-role">B.Tech</p><p class="mem-topic">Work-stealing runtime over CUDA GPUs</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/anuj.jpeg" alt="Anuj Yadav"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/anujxyadav/" target="_blank">Anuj Yadav</a></div><p class="mem-role">B.Tech</p><p class="mem-topic">Work-stealing task queues</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/aamleen.jpeg" alt="Aamleen Ahmed"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/aamleen-ahmed/" target="_blank">Aamleen Ahmed</a></div><p class="mem-role">B.Tech</p><p class="mem-topic">Work-stealing task queues</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/abhipray.jpg" alt="Abhiprayah Tiwari"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/abhiprayah-tiwari-a30b3017b/" target="_blank">Abhiprayah Tiwari</a></div><p class="mem-role">M.Tech</p><p class="mem-topic">OpenMP for heterogeneous processors</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/sujay.jpeg" alt="Sujay Raj"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/sujay-raj-shetty/" target="_blank">Sujay Raj</a></div><p class="mem-role">M.Tech</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/harsh.jpeg" alt="Harsh Parikh"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/harsh-parikh-842985ab/" target="_blank">Harsh Parikh</a></div><p class="mem-role">M.Tech</p></div></div></div>
+      </div>
     </div>
     <hr class="member-group-sep">
 
     <!-- Short Project Alumni -->
     <div class="member-group-heading">Short Project Alumni</div>
     <div class="alumni_scroll">
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/rishabh25.jpg" alt="Rishabh Jakhar"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/rishabh-jakhar/" target="_blank">Rishabh Jakhar</a></div><p class="mem-role">B.Tech</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/garvit25.jpg" alt="Garvit"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/garvit-322a882a1" target="_blank">Garvit</a></div><p class="mem-role">B.Tech</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/karan25.jpg" alt="Karan Gupta"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/karan-gupta-5869a6226/" target="_blank">Karan Gupta</a></div><p class="mem-role">B.Tech</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/adarsh.jpeg" alt="Adarsh Raj Shivam"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/adarsh-raj-shivam/" target="_blank">Adarsh Raj Shivam</a></div><p class="mem-role">B.Tech</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/alindkhare.jpg" alt="Alind Khare"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/alind-khare-a0141a191/" target="_blank">Alind Khare</a></div><p class="mem-role">B.Tech</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/vaibhav.jpeg" alt="Vaibhav Pande"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/vaibhav-pande-52612642" target="_blank">Vaibhav Pande</a></div><p class="mem-role">M.Tech</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/dibya.jpeg" alt="Dibya Gautam"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/dibya-gautam-a20277187/" target="_blank">Dibya Gautam</a></div><p class="mem-role">B.Tech</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/vibhu.jpeg" alt="Vibhu Agrawal"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/vibhu-agrawal-17ab95184/" target="_blank">Vibhu Agrawal</a></div><p class="mem-role">B.Tech</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/manan.jpeg" alt="Manan Jain"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/just-a-programmer/" target="_blank">Manan Jain</a></div><p class="mem-role">B.Tech</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/viraj.jpeg" alt="Viraj Parimi"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/virajparimi/" target="_blank">Viraj Parimi</a></div><p class="mem-role">B.Tech</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/abhijeet.jpg" alt="Abhijeet Singh"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/abhijeetsingh1429/" target="_blank">Abhijeet Singh</a></div><p class="mem-role">B.Tech</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/nikhil.jpeg" alt="Nikhil Hassija"><div class="mem-details"><div class="mem-name">Nikhil Hassija</div><p class="mem-role">B.Tech</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/rajat.jpeg" alt="Rajat Mahey"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/rajatmahey/" target="_blank">Rajat Mahey</a></div><p class="mem-role">M.Tech</p></div></div></div>
-      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img src="img/students/gaurav.jpeg" alt="Gaurav Joshi"><div class="mem-details"><div class="mem-name">Gaurav Joshi</div><p class="mem-role">M.Tech</p></div></div></div>
+      <div class="alumni_inner">
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/rishabh25.jpg" alt="Rishabh Jakhar"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/rishabh-jakhar/" target="_blank">Rishabh Jakhar</a></div><p class="mem-role">B.Tech</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/garvit25.jpg" alt="Garvit"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/garvit-322a882a1" target="_blank">Garvit</a></div><p class="mem-role">B.Tech</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/karan25.jpg" alt="Karan Gupta"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/karan-gupta-5869a6226/" target="_blank">Karan Gupta</a></div><p class="mem-role">B.Tech</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/adarsh.jpeg" alt="Adarsh Raj Shivam"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/adarsh-raj-shivam/" target="_blank">Adarsh Raj Shivam</a></div><p class="mem-role">B.Tech</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/alindkhare.jpg" alt="Alind Khare"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/alind-khare-a0141a191/" target="_blank">Alind Khare</a></div><p class="mem-role">B.Tech</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/vaibhav.jpeg" alt="Vaibhav Pande"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/vaibhav-pande-52612642" target="_blank">Vaibhav Pande</a></div><p class="mem-role">M.Tech</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/dibya.jpeg" alt="Dibya Gautam"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/dibya-gautam-a20277187/" target="_blank">Dibya Gautam</a></div><p class="mem-role">B.Tech</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/vibhu.jpeg" alt="Vibhu Agrawal"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/vibhu-agrawal-17ab95184/" target="_blank">Vibhu Agrawal</a></div><p class="mem-role">B.Tech</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/manan.jpeg" alt="Manan Jain"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/just-a-programmer/" target="_blank">Manan Jain</a></div><p class="mem-role">B.Tech</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/viraj.jpeg" alt="Viraj Parimi"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/virajparimi/" target="_blank">Viraj Parimi</a></div><p class="mem-role">B.Tech</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/abhijeet.jpg" alt="Abhijeet Singh"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/abhijeetsingh1429/" target="_blank">Abhijeet Singh</a></div><p class="mem-role">B.Tech</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/nikhil.jpeg" alt="Nikhil Hassija"><div class="mem-details"><div class="mem-name">Nikhil Hassija</div><p class="mem-role">B.Tech</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/rajat.jpeg" alt="Rajat Mahey"><div class="mem-details"><div class="mem-name"><a href="https://www.linkedin.com/in/rajatmahey/" target="_blank">Rajat Mahey</a></div><p class="mem-role">M.Tech</p></div></div></div>
+      <div class="mem-container"><div class="mem-content"><div class="mem-overlay"></div><img loading="lazy" src="img/students/gaurav.jpeg" alt="Gaurav Joshi"><div class="mem-details"><div class="mem-name">Gaurav Joshi</div><p class="mem-role">M.Tech</p></div></div></div>
+      </div>
     </div>
   </div>
 </div>
@@ -1498,25 +1573,25 @@ footer p {
     <div class="sec-label">Lab Life</div>
     <h2 class="sec-title">Gallery</h2>
     <div class="gallery-grid">
-      <a href="img/gallery/hipc25-1.jpg" data-lightbox="image"><img src="img/gallery/hipc25-1.jpg" alt="HiPC 2025"></a>
-      <a href="img/gallery/hipc25-2.jpeg" data-lightbox="image"><img src="img/gallery/hipc25-2.jpeg" alt="HiPC 2025"></a>
-      <a href="img/gallery/hipc25-3.jpg" data-lightbox="image"><img src="img/gallery/hipc25-3.jpg" alt="HiPC 2025"></a>
-      <a href="img/gallery/varun-best-btp.jpeg" data-lightbox="image"><img src="img/gallery/varun-best-btp.jpeg" alt="Best BTP"></a>
-      <a href="img/gallery/varun-btp.jpeg" data-lightbox="image"><img src="img/gallery/varun-btp.jpeg" alt="BTP"></a>
-      <a href="img/gallery/os-2024.jpg" data-lightbox="image"><img src="img/gallery/os-2024.jpg" alt="OS 2024"></a>
-      <a href="img/gallery/teaching2024.jpg" data-lightbox="image"><img src="img/gallery/teaching2024.jpg" alt="Teaching 2024"></a>
-      <a href="img/gallery/hipcsrs22.jpg" data-lightbox="image"><img src="img/gallery/hipcsrs22.jpg" alt="HiPC SRS 2022"></a>
-      <a href="img/gallery/meet2021b.jpg" data-lightbox="image"><img src="img/gallery/meet2021b.jpg" alt="Meet 2021"></a>
-      <a href="img/gallery/prmp_2022.jpg" data-lightbox="image"><img src="img/gallery/prmp_2022.jpg" alt="PRMP 2022"></a>
-      <a href="img/gallery/sit_2022.jpeg" data-lightbox="image"><img src="img/gallery/sit_2022.jpeg" alt="2022"></a>
-      <a href="img/gallery/meet2021a.jpg" data-lightbox="image"><img src="img/gallery/meet2021a.jpg" alt="Meet 2021"></a>
-      <a href="img/gallery/hipecteamlunchjuly18.jpg" data-lightbox="image"><img src="img/gallery/hipecteamlunchjuly18.jpg" alt="Team Lunch 2018"></a>
-      <a href="img/gallery/fpp_2022.jpg" data-lightbox="image"><img src="img/gallery/fpp_2022.jpg" alt="FPP 2022"></a>
-      <a href="img/gallery/fpp_2018.jpg" data-lightbox="image"><img src="img/gallery/fpp_2018.jpg" alt="FPP 2018"></a>
-      <a href="img/gallery/fpp_2017.jpg" data-lightbox="image"><img src="img/gallery/fpp_2017.jpg" alt="FPP 2017"></a>
-      <a href="img/gallery/ap_2019.jpg" data-lightbox="image"><img src="img/gallery/ap_2019.jpg" alt="AP 2019"></a>
-      <a href="img/gallery/ap_2018.jpg" data-lightbox="image"><img src="img/gallery/ap_2018.jpg" alt="AP 2018"></a>
-      <a href="img/gallery/ap_2017.jpg" data-lightbox="image"><img src="img/gallery/ap_2017.jpg" alt="AP 2017"></a>
+      <a href="img/gallery/hipc25-1.jpg" data-lightbox="image"><img loading="lazy" src="img/gallery/hipc25-1.jpg" alt="HiPC 2025"></a>
+      <a href="img/gallery/hipc25-2.jpeg" data-lightbox="image"><img loading="lazy" src="img/gallery/hipc25-2.jpeg" alt="HiPC 2025"></a>
+      <a href="img/gallery/hipc25-3.jpg" data-lightbox="image"><img loading="lazy" src="img/gallery/hipc25-3.jpg" alt="HiPC 2025"></a>
+      <a href="img/gallery/varun-best-btp.jpeg" data-lightbox="image"><img loading="lazy" src="img/gallery/varun-best-btp.jpeg" alt="Best BTP"></a>
+      <a href="img/gallery/varun-btp.jpeg" data-lightbox="image"><img loading="lazy" src="img/gallery/varun-btp.jpeg" alt="BTP"></a>
+      <a href="img/gallery/os-2024.jpg" data-lightbox="image"><img loading="lazy" src="img/gallery/os-2024.jpg" alt="OS 2024"></a>
+      <a href="img/gallery/teaching2024.jpg" data-lightbox="image"><img loading="lazy" src="img/gallery/teaching2024.jpg" alt="Teaching 2024"></a>
+      <a href="img/gallery/hipcsrs22.jpg" data-lightbox="image"><img loading="lazy" src="img/gallery/hipcsrs22.jpg" alt="HiPC SRS 2022"></a>
+      <a href="img/gallery/meet2021b.jpg" data-lightbox="image"><img loading="lazy" src="img/gallery/meet2021b.jpg" alt="Meet 2021"></a>
+      <a href="img/gallery/prmp_2022.jpg" data-lightbox="image"><img loading="lazy" src="img/gallery/prmp_2022.jpg" alt="PRMP 2022"></a>
+      <a href="img/gallery/sit_2022.jpeg" data-lightbox="image"><img loading="lazy" src="img/gallery/sit_2022.jpeg" alt="2022"></a>
+      <a href="img/gallery/meet2021a.jpg" data-lightbox="image"><img loading="lazy" src="img/gallery/meet2021a.jpg" alt="Meet 2021"></a>
+      <a href="img/gallery/hipecteamlunchjuly18.jpg" data-lightbox="image"><img loading="lazy" src="img/gallery/hipecteamlunchjuly18.jpg" alt="Team Lunch 2018"></a>
+      <a href="img/gallery/fpp_2022.jpg" data-lightbox="image"><img loading="lazy" src="img/gallery/fpp_2022.jpg" alt="FPP 2022"></a>
+      <a href="img/gallery/fpp_2018.jpg" data-lightbox="image"><img loading="lazy" src="img/gallery/fpp_2018.jpg" alt="FPP 2018"></a>
+      <a href="img/gallery/fpp_2017.jpg" data-lightbox="image"><img loading="lazy" src="img/gallery/fpp_2017.jpg" alt="FPP 2017"></a>
+      <a href="img/gallery/ap_2019.jpg" data-lightbox="image"><img loading="lazy" src="img/gallery/ap_2019.jpg" alt="AP 2019"></a>
+      <a href="img/gallery/ap_2018.jpg" data-lightbox="image"><img loading="lazy" src="img/gallery/ap_2018.jpg" alt="AP 2018"></a>
+      <a href="img/gallery/ap_2017.jpg" data-lightbox="image"><img loading="lazy" src="img/gallery/ap_2017.jpg" alt="AP 2017"></a>
     </div>
   </div>
 </div>
@@ -1527,7 +1602,6 @@ footer p {
     <div class="sec-label">Resources</div>
     <h2 class="sec-title">Links</h2>
     <ul class="links-ul">
-      <li><a href="https://github.com/hipec" target="_blank">GitHub</a> — Open-sourced software repositories from HiPeC Lab.</li>
       <li><a href="http://192.168.28.65:8080/" target="_blank">Server Reservation Portal</a> — Book HiPeC servers. VPN required outside IIIT-Delhi.</li>
       <li><a href="https://docs.google.com/document/d/1RJQb1ffXRhT_WOgrPfxLckiMq3bCdckGpHXCFEzjx7M/edit?usp=sharing" target="_blank">HiPeC Lab User Manual</a> — New joiners should review this. VPN required outside IIIT-Delhi.</li>
     </ul>
@@ -1602,6 +1676,33 @@ function updateActiveLink(){
 }
 window.addEventListener('scroll', updateActiveLink);
 updateActiveLink();
+
+/* ── News older toggle ── */
+(function(){
+  var btn = document.getElementById('news-toggle');
+  var older = document.getElementById('news-older');
+  if(!btn || !older) return;
+  btn.addEventListener('click', function(){
+    var open = older.classList.toggle('open');
+    btn.textContent = open ? 'Show less ▴' : 'Show older news ▾';
+  });
+})();
+
+/* ── Publication filters ── */
+(function(){
+  var btns = document.querySelectorAll('#pub-filters .pub-filter-btn');
+  var cards = document.querySelectorAll('.paper-card[data-type]');
+  btns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var filter = btn.getAttribute('data-filter');
+      btns.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      cards.forEach(function(card){
+        card.classList.toggle('hidden', filter !== 'all' && card.getAttribute('data-type') !== filter);
+      });
+    });
+  });
+})();
 
 /* ── Abstract toggle ── */
 function toggleAbstract(id){
