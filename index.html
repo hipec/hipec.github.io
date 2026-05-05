@@ -901,6 +901,29 @@ footer p {
   .sec-label, .sec-title { font-size: 1.4rem; }
   .hero-cta { flex-direction: column; }
 }
+/* ── FOOTER ───────────────────────────────────────────────── */
+.site-footer {
+  background: var(--raised);
+  border-top: 1px solid var(--line);
+  padding: 32px 40px;
+  margin-left: var(--sidebar-w);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  text-align: center;
+  font-size: .82rem;
+  color: var(--muted);
+}
+.site-footer a { color: var(--grey); text-decoration: none; }
+.site-footer a:hover { color: var(--amber); }
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+@media (max-width: 768px) {
+  .site-footer { margin-left: 0; padding: 24px 16px; justify-content: center; text-align: center; }
+  .footer-links { justify-content: center; }
+}
 #back-to-top {
   position: fixed;
   bottom: 28px;
@@ -1840,6 +1863,18 @@ document.getElementById('contact-form').addEventListener('submit', function(e){
   });
 });
 </script>
+
+<footer class="site-footer">
+  <span>© 2026 HiPeC Lab, IIIT-Delhi &nbsp;·&nbsp; Last updated May 2026</span>
+  <nav class="footer-links">
+    <a href="#hero">Home</a>
+    <a href="#research">Research</a>
+    <a href="#members">Members</a>
+    <a href="#courses">Courses</a>
+    <a href="#contact">Contact</a>
+    <a href="http://192.168.28.65:8080/" target="_blank">Server Portal</a>
+  </nav>
+</footer>
 
 </body>
 </html>
