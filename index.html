@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HiPeC Lab — High Performance Computing @ IIIT-Delhi</title>
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="apple-touch-icon" href="img/logo.png">
   <meta name="description" content="HiPeC Lab at IIIT-Delhi: adaptive runtime systems for high-performance, energy-efficient, and scalable computing.">
 
   <!-- Open Graph -->
@@ -95,32 +97,25 @@ p { color: var(--grey); line-height: 1.75; }
   box-shadow: 2px 0 16px rgba(0,0,0,.25);
 }
 .sidebar-logo {
-  padding: 32px 22px 24px;
+  padding: 24px 22px 20px;
   border-bottom: 1px solid var(--line);
-  font-family: var(--mono);
-  font-size: 1.6rem;
-  letter-spacing: 2px;
-  color: var(--white);
   text-decoration: none;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
   background: var(--surface);
 }
-.sidebar-logo .hi  { color: var(--amber); }
-.sidebar-logo .pec { color: var(--white); }
-.sidebar-logo .lab {
-  color: var(--grey);
-  font-size: 1.2rem;
-  letter-spacing: 1px;
-}
+.sidebar-logo img { width: 120px; height: auto; opacity: .93; }
 .sidebar-logo .sub {
   display: block;
-  font-size: .82rem;
+  font-size: .75rem;
   letter-spacing: 1.5px;
   color: var(--muted);
-  margin-top: 6px;
   font-family: var(--sans);
   font-weight: 400;
   text-transform: uppercase;
+  text-align: center;
 }
 .sidebar-nav {
   flex: 1;
@@ -901,19 +896,28 @@ footer p {
 }
 
 /* ── HAMBURGER ────────────────────────────────────────────── */
-.sidebar-toggle {
+.mobile-topbar {
   display: none;
   position: fixed;
-  top: 14px; left: 14px;
-  z-index: 1200;
+  top: 0; left: 0; right: 0;
+  height: 52px;
   background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  z-index: 1200;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+}
+.mobile-logo img { height: 34px; width: auto; opacity: .92; }
+.sidebar-toggle {
+  display: flex;
+  background: none;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 8px 10px;
   cursor: pointer;
   flex-direction: column;
   gap: 5px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.3);
 }
 .sidebar-toggle span {
   display: block;
@@ -947,8 +951,9 @@ footer p {
     transform: translateX(0);
     box-shadow: 4px 0 24px rgba(0,0,0,.4);
   }
-  .sidebar-toggle { display: flex; }
-  .ticker-wrap { padding-left: 56px; }
+  .mobile-topbar { display: flex; }
+  body { padding-top: 52px; }
+  .ticker-wrap { padding-left: 0; }
   .hero-title { font-size: 2.2rem; }
   .hero-eyebrow { font-size: .95rem; }
   .section { padding: 60px 16px; }
@@ -965,6 +970,7 @@ footer p {
   .hero-title { font-size: 1.8rem; }
   .sec-label, .sec-title { font-size: 1.4rem; }
   .hero-cta { flex-direction: column; }
+
 }
 /* ── SECTION CHIP ─────────────────────────────────────────── */
 #section-chip {
@@ -1067,15 +1073,20 @@ footer p {
 <div id="section-chip"></div>
 
 <!-- ══════════════════════ MOBILE HAMBURGER ═══════════════════════════ -->
-<button class="sidebar-toggle" id="sidebar-toggle" aria-label="Open menu">
-  <span></span><span></span><span></span>
-</button>
+<div class="mobile-topbar" id="mobile-topbar">
+  <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+  <a class="mobile-logo" href="#hero">
+    <img src="img/logo.png" alt="HiPeC Lab">
+  </a>
+</div>
 <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
 
 <!-- ══════════════════════════ SIDEBAR ════════════════════════════════ -->
 <div class="sidebar-navigation" id="sidebar">
   <a class="sidebar-logo" href="#hero">
-    <span class="hi">Hi</span><span class="pec">PeC</span><span class="lab"> Lab</span>
+    <img src="img/logo.png" alt="HiPeC Lab">
     <span class="sub">IIIT-Delhi</span>
   </a>
   <nav class="sidebar-nav">
@@ -1126,7 +1137,6 @@ footer p {
     <p class="hero-sub">
       We build adaptive runtime systems that efficiently harness parallelism across diverse computing platforms while optimizing performance and energy.
     </p>
-
     <div class="hero-cta">
       <a href="#research" class="btn-primary">View Research</a>
     </div>
