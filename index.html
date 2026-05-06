@@ -1922,7 +1922,7 @@ updateActiveLink();
     else return;
     e.preventDefault();
     var current = 0;
-    var scrollY = window.scrollY + window.innerHeight / 2;
+    var scrollY = window.scrollY + 80;
     sectionIds.forEach(function(id, i){
       var el = document.getElementById(id);
       if(el && el.offsetTop <= scrollY) current = i;
