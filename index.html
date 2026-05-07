@@ -584,9 +584,11 @@ p { color: var(--grey); line-height: 1.75; }
 .tag-btn.link:hover { border-color: var(--teal); background: var(--teal-bg); }
 
 .paper-abstract {
-  display: none;
-  margin-top: 14px;
-  padding: 14px 16px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .35s ease, padding .35s ease, margin-top .35s ease;
+  padding: 0 16px;
+  margin-top: 0;
   background: var(--raised);
   border-radius: var(--radius);
   border-left: 2px solid var(--amber-bd);
@@ -594,6 +596,11 @@ p { color: var(--grey); line-height: 1.75; }
   color: var(--grey);
   line-height: 1.8;
   text-align: justify;
+}
+.paper-abstract.open {
+  max-height: 600px;
+  padding: 14px 16px;
+  margin-top: 14px;
 }
 .paper-abstract p + p { margin-top: 12px; }
 
@@ -890,6 +897,43 @@ p { color: var(--grey); line-height: 1.75; }
   border-color: var(--amber-bd);
 }
 
+/* ── LIGHTBOX OVERRIDES ───────────────────────────────────── */
+#lightboxOverlay {
+  position: fixed !important;
+  top: 0 !important; left: 0 !important;
+  width: 100vw !important; height: 100vh !important;
+  background: rgba(0,0,0,.92) !important;
+  z-index: 9000 !important;
+}
+#lightbox {
+  position: fixed !important;
+  top: 50% !important; left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: auto !important;
+  z-index: 9001 !important;
+}
+.lb-outerContainer {
+  background: var(--raised) !important;
+  border-radius: 10px !important;
+  border: 1px solid var(--line) !important;
+}
+.lb-image {
+  border: none !important;
+  border-radius: 8px 8px 0 0 !important;
+  max-width: min(90vw, 1000px) !important;
+  max-height: 75vh !important;
+  object-fit: contain !important;
+}
+.lb-dataContainer {
+  background: var(--raised) !important;
+  border-radius: 0 0 10px 10px !important;
+  padding: 8px 16px !important;
+}
+.lb-caption { color: var(--white) !important; font-family: var(--sans) !important; font-size: .9rem !important; }
+.lb-number  { color: var(--muted) !important; font-family: var(--mono) !important; font-size: .78rem !important; }
+.lb-close, .lb-prev, .lb-next { opacity: .7 !important; transition: opacity .2s !important; }
+.lb-close:hover, .lb-prev:hover, .lb-next:hover { opacity: 1 !important; }
+
 /* ── LINKS ────────────────────────────────────────────────── */
 .links-list { display: flex; flex-direction: column; gap: 12px; }
 .links-list .info-item { font-size: .95rem; }
@@ -1014,7 +1058,8 @@ footer p {
     box-shadow: 4px 0 24px rgba(0,0,0,.4);
   }
   .mobile-topbar { display: flex; }
-  body { padding-top: 52px; }
+  body { padding-top: 52px; padding-bottom: 60px; }
+  .mobile-bottom-nav { display: flex; }
   .ticker-wrap { padding-left: 0; }
   .hero-title { font-size: 2.2rem; }
   .hero-eyebrow { font-size: .95rem; }
@@ -1026,13 +1071,45 @@ footer p {
   .mem-content { width: 150px; height: 150px; }
   .mem-content img { width: 150px; height: 150px; }
 }
+/* ── MOBILE BOTTOM NAV ────────────────────────────────────── */
+.mobile-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 60px;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  z-index: 1200;
+  align-items: stretch;
+  justify-content: space-around;
+}
+.mobile-bottom-nav a {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: var(--grey);
+  text-decoration: none;
+  font-size: .62rem;
+  font-family: var(--sans);
+  letter-spacing: .3px;
+  transition: color .2s;
+  padding: 6px 0;
+}
+.mobile-bottom-nav a i { font-size: 1.1rem; }
+.mobile-bottom-nav a.active,
+.mobile-bottom-nav a:hover { color: var(--amber); }
+.mobile-bottom-nav a.active i { filter: drop-shadow(0 0 4px var(--amber)); }
+
 @media (max-width: 480px) {
   .video-grid { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
   .hero-title { font-size: 1.8rem; }
   .sec-label, .sec-title { font-size: 1.4rem; }
   .hero-cta { flex-direction: column; }
-
+  .tag-btn { padding: 8px 14px; font-size: .82rem; }
 }
 /* ── SECTION CHIP ─────────────────────────────────────────── */
 #section-chip {
@@ -1940,6 +2017,9 @@ var sections = Array.from(sidebarLinks).map(function(a){
 }).filter(Boolean);
 var chip = document.getElementById('section-chip');
 var sectionLabels = { hero:'Home', news:'News', research:'Research', members:'Members', courses:'Courses', openings:'Openings', funding:'Funding', gallery:'Gallery', links:'Links', contact:'Contact' };
+var mbnLinks = document.querySelectorAll('.mobile-bottom-nav a');
+var mbnMap = { hero:'mbn-home', research:'mbn-research', members:'mbn-members', contact:'mbn-contact' };
+
 function updateActiveLink(){
   var scrollY = window.scrollY + 80;
   var active = sections[0];
@@ -1948,12 +2028,16 @@ function updateActiveLink(){
     var id = a.getAttribute('href').replace('#','');
     a.classList.toggle('active', active && active.id === id);
   });
+  var id = active ? active.id : 'hero';
+  var isHero = (id === 'hero' && window.scrollY < 100);
+  document.title = isHero ? 'HiPeC Lab — High Performance Computing @ IIIT-Delhi'
+                           : (sectionLabels[id] || id) + ' | HiPeC Lab';
   if(chip){
-    var id = active ? active.id : 'hero';
-    var isHero = (id === 'hero' && window.scrollY < 100);
     chip.textContent = '§ ' + (sectionLabels[id] || id);
     chip.classList.toggle('visible', !isHero);
   }
+  var activeTab = mbnMap[id] || (window.scrollY < document.body.scrollHeight * 0.8 ? 'mbn-home' : 'mbn-contact');
+  mbnLinks.forEach(function(a){ a.classList.toggle('active', a.id === activeTab); });
 }
 window.addEventListener('scroll', updateActiveLink);
 updateActiveLink();
@@ -2067,14 +2151,10 @@ updateActiveLink();
 function toggleAbstract(id){
   var el = document.getElementById(id);
   if(!el) return;
-  var btn = el.previousElementSibling
-             ? el.previousElementSibling.querySelector('button.tag-btn')
-             : null;
-  if(el.style.display === 'block'){
-    el.style.display = 'none';
-  } else {
-    el.style.display = 'block';
-  }
+  var open = el.classList.toggle('open');
+  var card = el.closest('.paper-card');
+  var btn = card ? card.querySelector('.paper-actions .tag-btn') : null;
+  if(btn) btn.classList.toggle('active', open);
 }
 
 /* ── Course tabs ── */
@@ -2193,6 +2273,13 @@ document.getElementById('contact-form').addEventListener('submit', function(e){
     <a href="http://192.168.28.65:8080/" target="_blank">Server Portal</a>
   </nav>
 </footer>
+
+<nav class="mobile-bottom-nav" id="mobile-bottom-nav">
+  <a href="#hero"     id="mbn-home">    <i class="fa fa-home"></i>    Home</a>
+  <a href="#research" id="mbn-research"> <i class="fa fa-flask"></i>   Research</a>
+  <a href="#members"  id="mbn-members">  <i class="fa fa-users"></i>   Members</a>
+  <a href="#contact"  id="mbn-contact">  <i class="fa fa-envelope"></i>Contact</a>
+</nav>
 
 </body>
 </html>
