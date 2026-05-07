@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="css/fontAwesome.css">
 
 <style>
-/* ── RESET & VARIABLES ────────────────────────────────────── */
+/* -- RESET & VARIABLES -------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 :focus { outline: none; }
@@ -99,8 +99,8 @@ p { color: var(--grey); line-height: 1.75; }
 ::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--amber); }
 
-/* ── TOP NAV ──────────────────────────────────────────────── */
-/* ── SIDEBAR ─────────────────────────────────────────────── */
+/* -- TOP NAV ------------------------------------------------ */
+/* -- SIDEBAR ----------------------------------------------- */
 .sidebar-navigation {
   width: var(--sidebar-w);
   position: fixed;
@@ -180,7 +180,7 @@ p { color: var(--grey); line-height: 1.75; }
 .sidebar-nav a:hover .rect,
 .sidebar-nav a.active .rect { width: 18px; }
 
-/* ── THEME TOGGLE ─────────────────────────────────────────── */
+/* -- THEME TOGGLE ------------------------------------------- */
 .theme-toggle-wrap {
   display: flex;
   align-items: center;
@@ -226,7 +226,7 @@ p { color: var(--grey); line-height: 1.75; }
 }
 .mobile-theme-toggle:hover { border-color: var(--amber-bd); color: var(--amber); }
 
-/* ── TICKER ───────────────────────────────────────────────── */
+/* -- TICKER ------------------------------------------------- */
 .ticker-wrap {
   margin-top: 0;
   background: var(--amber-bg);
@@ -262,7 +262,7 @@ p { color: var(--grey); line-height: 1.75; }
   100% { transform: translateX(-50%); }
 }
 
-/* ── HERO ─────────────────────────────────────────────────── */
+/* -- HERO --------------------------------------------------- */
 .hero {
   position: relative;
   min-height: calc(100vh - 36px);
@@ -399,7 +399,7 @@ p { color: var(--grey); line-height: 1.75; }
 }
 .btn-outline:hover { border-color: var(--amber); color: var(--amber); }
 
-/* ── SECTIONS ─────────────────────────────────────────────── */
+/* -- SECTIONS ----------------------------------------------- */
 .section {
   padding: 80px 24px;
   max-width: 1080px;
@@ -430,7 +430,7 @@ p { color: var(--grey); line-height: 1.75; }
 }
 
 
-/* ── ABOUT ────────────────────────────────────────────────── */
+/* -- ABOUT -------------------------------------------------- */
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -477,7 +477,7 @@ p { color: var(--grey); line-height: 1.75; }
   border: 1px solid var(--line);
 }
 
-/* ── NEWS ─────────────────────────────────────────────────── */
+/* -- NEWS --------------------------------------------------- */
 .news-scroll {
   padding-right: 8px;
 }
@@ -533,7 +533,7 @@ p { color: var(--grey); line-height: 1.75; }
 .news-item a:hover { color: var(--amber); }
 .news-divider { border: none; border-top: 1px dashed var(--muted); margin: 8px 0; }
 
-/* ── RESEARCH PAPERS ──────────────────────────────────────── */
+/* -- RESEARCH PAPERS ---------------------------------------- */
 .paper-card {
   background: var(--surface);
   border: 1px solid var(--line);
@@ -637,7 +637,7 @@ p { color: var(--grey); line-height: 1.75; }
   letter-spacing: .3px;
 }
 
-/* ── PAPER THEME TAGS ─────────────────────────────────────── */
+/* -- PAPER THEME TAGS --------------------------------------- */
 .paper-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 .paper-tag {
   font-size: .73rem;
@@ -649,7 +649,7 @@ p { color: var(--grey); line-height: 1.75; }
   letter-spacing: .3px;
 }
 
-/* ── PUBLICATION FILTERS ──────────────────────────────────── */
+/* -- PUBLICATION FILTERS ------------------------------------ */
 .pub-filters {
   display: flex;
   gap: 10px;
@@ -672,7 +672,7 @@ p { color: var(--grey); line-height: 1.75; }
 .pub-filter-btn.active { border-color: var(--amber); color: var(--amber); background: var(--amber-bg); }
 .paper-card.hidden { display: none; }
 
-/* ── MEMBER PROFILE ICON ──────────────────────────────────── */
+/* -- MEMBER PROFILE ICON ------------------------------------ */
 .mem-profile-btn {
   position: absolute;
   top: 8px;
@@ -695,7 +695,7 @@ p { color: var(--grey); line-height: 1.75; }
 }
 .mem-content:hover .mem-profile-btn { opacity: 1; transform: scale(1); }
 
-/* ── MEMBERS ──────────────────────────────────────────────── */
+/* -- MEMBERS ------------------------------------------------ */
 .member-group-heading {
   font-size: 1rem;
   font-weight: 600;
@@ -785,7 +785,7 @@ p { color: var(--grey); line-height: 1.75; }
   margin: 0;
 }
 
-/* ── COURSES ──────────────────────────────────────────────── */
+/* -- COURSES ------------------------------------------------ */
 .tab-bar { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; justify-content: center; }
 .tab-btn {
   font-size: .85rem;
@@ -851,7 +851,7 @@ p { color: var(--grey); line-height: 1.75; }
 }
 .btn-amber:hover { background: var(--white); color: #000; box-shadow: 0 0 18px rgba(245,166,35,.35); }
 
-/* ── TWO-COL SECTIONS (Openings + Funding) ────────────────── */
+/* -- TWO-COL SECTIONS (Openings + Funding) ------------------ */
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 
 .info-card {
@@ -881,7 +881,7 @@ p { color: var(--grey); line-height: 1.75; }
 
 .opening-body { font-size: .92rem; color: var(--grey); line-height: 1.8; margin-bottom: 20px; }
 
-/* ── GALLERY ──────────────────────────────────────────────── */
+/* -- GALLERY ------------------------------------------------ */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -903,7 +903,7 @@ p { color: var(--grey); line-height: 1.75; }
   border-color: var(--amber-bd);
 }
 
-/* ── LIGHTBOX OVERRIDES ───────────────────────────────────── */
+/* -- LIGHTBOX OVERRIDES ------------------------------------- */
 #lightboxOverlay {
   position: fixed !important;
   top: 0 !important; left: 0 !important;
@@ -940,7 +940,7 @@ p { color: var(--grey); line-height: 1.75; }
 .lb-close, .lb-prev, .lb-next { opacity: .7 !important; transition: opacity .2s !important; }
 .lb-close:hover, .lb-prev:hover, .lb-next:hover { opacity: 1 !important; }
 
-/* ── LINKS ────────────────────────────────────────────────── */
+/* -- LINKS -------------------------------------------------- */
 .links-list { display: flex; flex-direction: column; gap: 12px; }
 .links-list .info-item { font-size: .95rem; }
 .links-ul {
@@ -966,7 +966,7 @@ p { color: var(--grey); line-height: 1.75; }
   color: var(--amber);
 }
 
-/* ── CONTACT ──────────────────────────────────────────────── */
+/* -- CONTACT ------------------------------------------------ */
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
 .contact-map iframe {
   width: 100%;
@@ -1000,14 +1000,14 @@ p { color: var(--grey); line-height: 1.75; }
 .contact-form textarea { height: 140px; resize: vertical; margin-bottom: 14px; }
 .contact-form .form-row-full { margin-bottom: 12px; }
 
-/* ── FOOTER ───────────────────────────────────────────────── */
+/* -- FOOTER ------------------------------------------------- */
 footer p {
   font-size: .82rem;
   letter-spacing: 0;
   color: var(--muted);
 }
 
-/* ── HAMBURGER ────────────────────────────────────────────── */
+/* -- HAMBURGER ---------------------------------------------- */
 .mobile-topbar {
   display: none;
   position: fixed;
@@ -1047,7 +1047,7 @@ footer p {
 }
 .sidebar-backdrop.open { display: block; }
 
-/* ── RESPONSIVE ───────────────────────────────────────────── */
+/* -- RESPONSIVE --------------------------------------------- */
 @media (max-width: 900px) {
   .about-grid, .contact-grid, .two-col { grid-template-columns: 1fr; }
   .video-grid { grid-template-columns: 1fr 1fr; }
@@ -1077,7 +1077,7 @@ footer p {
   .mem-content { width: 150px; height: 150px; }
   .mem-content img { width: 150px; height: 150px; }
 }
-/* ── MOBILE BOTTOM NAV ────────────────────────────────────── */
+/* -- MOBILE BOTTOM NAV -------------------------------------- */
 .mobile-bottom-nav {
   display: none;
   position: fixed;
@@ -1118,7 +1118,7 @@ footer p {
   .hero-cta { flex-direction: column; }
   .tag-btn { padding: 8px 14px; font-size: .82rem; }
 }
-/* ── SECTION CHIP ─────────────────────────────────────────── */
+/* -- SECTION CHIP ------------------------------------------- */
 #section-chip {
   position: fixed;
   bottom: 28px;
@@ -1142,7 +1142,7 @@ footer p {
   #back-to-top  { bottom: calc(72px + env(safe-area-inset-bottom)); right: 14px; }
 }
 
-/* ── SCROLL ANIMATIONS ────────────────────────────────────── */
+/* -- SCROLL ANIMATIONS -------------------------------------- */
 .anim-fade {
   opacity: 0;
   transform: translateY(22px);
@@ -1156,7 +1156,7 @@ footer p {
   .anim-fade { opacity: 1; transform: none; transition: none; }
 }
 
-/* ── FOOTER ───────────────────────────────────────────────── */
+/* -- FOOTER ------------------------------------------------- */
 .site-footer {
   background: var(--raised);
   border-top: 1px solid var(--line);
@@ -1219,7 +1219,7 @@ footer p {
 <button id="back-to-top" aria-label="Back to top">↑</button>
 <div id="section-chip"></div>
 
-<!-- ══════════════════════ MOBILE HAMBURGER ═══════════════════════════ -->
+<!-- ====================== MOBILE HAMBURGER =========================== -->
 <div class="mobile-topbar" id="mobile-topbar">
   <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Open menu">
     <span></span><span></span><span></span>
@@ -1231,7 +1231,7 @@ footer p {
 </div>
 <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
 
-<!-- ══════════════════════════ SIDEBAR ════════════════════════════════ -->
+<!-- ========================== SIDEBAR ================================ -->
 <div class="sidebar-navigation" id="sidebar">
   <a class="sidebar-logo" href="#hero">
     <img src="img/logo-dark.png" alt="HiPeC Lab" id="sidebar-logo-img">
@@ -1258,7 +1258,7 @@ footer p {
   </nav>
 </div>
 
-<!-- ════════════════════════════ TICKER ══════════════════════════════ -->
+<!-- ============================ TICKER ============================== -->
 <div class="ticker-wrap">
   <div style="display:flex;align-items:center;overflow:hidden;">
     <span class="ticker-label">UPDATES</span>
@@ -1278,7 +1278,7 @@ footer p {
   </div>
 </div>
 
-<!-- ════════════════════════════ HERO ════════════════════════════════ -->
+<!-- ============================ HERO ================================ -->
 <section id="hero" class="hero">
   <div class="hero-inner">
     <div class="hero-eyebrow">IIIT-Delhi &nbsp;·&nbsp; High Performance Computing Laboratory</div>
@@ -1296,7 +1296,7 @@ footer p {
   </div>
 </section>
 
-<!-- ════════════════════════════ ABOUT ═══════════════════════════════ -->
+<!-- ============================ ABOUT =============================== -->
 <div class="section-full" id="about">
   <div class="section">
     <div class="sec-label">About</div>
@@ -1318,7 +1318,7 @@ footer p {
   </div>
 </div>
 
-<!-- ════════════════════════════ NEWS ════════════════════════════════ -->
+<!-- ============================ NEWS ================================ -->
 <div class="section-full" id="news">
   <div class="section">
     <div class="sec-label">Latest</div>
@@ -1391,7 +1391,7 @@ footer p {
   </div>
 </div>
 
-<!-- ══════════════════════════ RESEARCH ═══════════════════════════════ -->
+<!-- ========================== RESEARCH =============================== -->
 <div class="section-full" id="research">
   <div class="section">
     <div class="sec-label">Publications</div>
@@ -1738,7 +1738,7 @@ footer p {
   </div><!-- /section -->
 </div><!-- /section-full -->
 
-<!-- ════════════════════════════ MEMBERS ══════════════════════════════ -->
+<!-- ============================ MEMBERS ============================== -->
 <div class="section-full" id="members">
   <div class="section">
     <div class="sec-label">People</div>
@@ -1829,7 +1829,7 @@ footer p {
   </div>
 </div>
 
-<!-- ════════════════════════════ COURSES ══════════════════════════════ -->
+<!-- ============================ COURSES ============================== -->
 <div class="section-full" id="courses">
   <div class="section">
     <div class="sec-label">Teaching</div>
@@ -1884,7 +1884,7 @@ footer p {
   </div>
 </div>
 
-<!-- ══════════════════════ OPENINGS + FUNDING ══════════════════════════ -->
+<!-- ====================== OPENINGS + FUNDING ========================== -->
 <div class="section-full">
   <div class="section">
     <div class="two-col">
@@ -1912,7 +1912,7 @@ footer p {
   </div>
 </div>
 
-<!-- ════════════════════════════ GALLERY ══════════════════════════════ -->
+<!-- ============================ GALLERY ============================== -->
 <div class="section-full" id="gallery">
   <div class="section">
     <div class="sec-label">Lab Life</div>
@@ -1941,7 +1941,7 @@ footer p {
   </div>
 </div>
 
-<!-- ═════════════════════════════ LINKS ═══════════════════════════════ -->
+<!-- ============================= LINKS =============================== -->
 <div class="section-full" id="links">
   <div class="section">
     <div class="sec-label">Resources</div>
@@ -1953,7 +1953,7 @@ footer p {
   </div>
 </div>
 
-<!-- ════════════════════════════ CONTACT ══════════════════════════════ -->
+<!-- ============================ CONTACT ============================== -->
 <div class="section-full" id="contact">
   <div class="section">
     <div class="sec-label">Reach Out</div>
@@ -1983,12 +1983,12 @@ footer p {
 </div>
 
 
-<!-- ═══════════════════════════ SCRIPTS ══════════════════════════════ -->
+<!-- =========================== SCRIPTS ============================== -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="js/plugins.js"></script>
 
 <script>
-/* ── Mobile sidebar toggle ── */
+/* -- Mobile sidebar toggle -- */
 var sidebar   = document.getElementById('sidebar');
 var backdrop  = document.getElementById('sidebar-backdrop');
 var toggleBtn = document.getElementById('sidebar-toggle');
@@ -2000,7 +2000,7 @@ document.querySelectorAll('.sidebar-nav a').forEach(function(a){
   a.addEventListener('click', closeSidebar);
 });
 
-/* ── Swipe gesture for mobile sidebar ── */
+/* -- Swipe gesture for mobile sidebar -- */
 (function(){
   var touchStartX = 0, touchStartY = 0;
   var SWIPE_THRESHOLD = 60, EDGE_ZONE = 40;
@@ -2017,7 +2017,7 @@ document.querySelectorAll('.sidebar-nav a').forEach(function(a){
   }, { passive: true });
 })();
 
-/* ── Sidebar: highlight active section on scroll ── */
+/* -- Sidebar: highlight active section on scroll -- */
 var sidebarLinks = document.querySelectorAll('.sidebar-nav a');
 var sections = Array.from(sidebarLinks).map(function(a){
   var id = a.getAttribute('href').replace('#','');
@@ -2050,7 +2050,7 @@ function updateActiveLink(){
 window.addEventListener('scroll', updateActiveLink);
 updateActiveLink();
 
-/* ── Scroll animations ── */
+/* -- Scroll animations -- */
 (function(){
   var targets = document.querySelectorAll(
     '.paper-card, .mem-container, .course-card, .news-item, ' +
@@ -2069,7 +2069,7 @@ updateActiveLink();
   targets.forEach(function(el){ observer.observe(el); });
 })();
 
-/* ── Keyboard section navigation ── */
+/* -- Keyboard section navigation -- */
 (function(){
   var sectionIds = ['hero','news','research','members','courses','openings','funding','gallery','links','contact'];
   document.addEventListener('keydown', function(e){
@@ -2092,7 +2092,7 @@ updateActiveLink();
   });
 })();
 
-/* ── Member profile icons ── */
+/* -- Member profile icons -- */
 (function(){
   document.querySelectorAll('.mem-content').forEach(function(card){
     var link = card.querySelector('.mem-name a');
@@ -2108,7 +2108,7 @@ updateActiveLink();
   });
 })();
 
-/* ── Back to top ── */
+/* -- Back to top -- */
 (function(){
   var btn = document.getElementById('back-to-top');
   window.addEventListener('scroll', function(){
@@ -2119,7 +2119,7 @@ updateActiveLink();
   });
 })();
 
-/* ── Scroll progress bar ── */
+/* -- Scroll progress bar -- */
 (function(){
   var bar = document.getElementById('progress-bar');
   window.addEventListener('scroll', function(){
@@ -2128,7 +2128,7 @@ updateActiveLink();
   });
 })();
 
-/* ── News older toggle ── */
+/* -- News older toggle -- */
 (function(){
   var btn = document.getElementById('news-toggle');
   var older = document.getElementById('news-older');
@@ -2139,7 +2139,7 @@ updateActiveLink();
   });
 })();
 
-/* ── Publication filters ── */
+/* -- Publication filters -- */
 (function(){
   var btns = document.querySelectorAll('#pub-filters .pub-filter-btn');
   var cards = document.querySelectorAll('.paper-card[data-type]');
@@ -2155,7 +2155,7 @@ updateActiveLink();
   });
 })();
 
-/* ── Abstract toggle ── */
+/* -- Abstract toggle -- */
 function toggleAbstract(id){
   var el = document.getElementById(id);
   if(!el) return;
@@ -2165,7 +2165,7 @@ function toggleAbstract(id){
   if(btn) btn.classList.toggle('active', open);
 }
 
-/* ── Course tabs ── */
+/* -- Course tabs -- */
 function showTab(id, btn){
   document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
   document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
@@ -2175,7 +2175,7 @@ function showTab(id, btn){
 }
 
 
-/* ── Contact form → Formspree ── */
+/* -- Contact form → Formspree -- */
 document.getElementById('contact-form').addEventListener('submit', function(e){
   e.preventDefault();
   var form   = this;
@@ -2208,7 +2208,7 @@ document.getElementById('contact-form').addEventListener('submit', function(e){
   });
 });
 
-/* ── Dark / Light mode toggle ── */
+/* -- Dark / Light mode toggle -- */
 (function(){
   var html = document.documentElement;
   var mobileBtn = document.getElementById('mobile-theme-toggle');
