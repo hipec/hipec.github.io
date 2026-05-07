@@ -1131,7 +1131,8 @@ footer p {
 }
 #section-chip.visible { opacity: 1; }
 @media (max-width: 768px) {
-  #section-chip { left: 14px; bottom: 14px; }
+  #section-chip { left: 14px; bottom: 72px; }
+  #back-to-top  { bottom: 72px; right: 14px; }
 }
 
 /* ── SCROLL ANIMATIONS ────────────────────────────────────── */
@@ -2036,8 +2037,8 @@ function updateActiveLink(){
     chip.textContent = '§ ' + (sectionLabels[id] || id);
     chip.classList.toggle('visible', !isHero);
   }
-  var activeTab = mbnMap[id] || (window.scrollY < document.body.scrollHeight * 0.8 ? 'mbn-home' : 'mbn-contact');
-  mbnLinks.forEach(function(a){ a.classList.toggle('active', a.id === activeTab); });
+  var activeTab = mbnMap[id] || null;
+  mbnLinks.forEach(function(a){ a.classList.toggle('active', activeTab !== null && a.id === activeTab); });
 }
 window.addEventListener('scroll', updateActiveLink);
 updateActiveLink();
@@ -2166,30 +2167,6 @@ function showTab(id, btn){
   if(btn) btn.classList.add('active');
 }
 
-/* ── Animated stat counters ── */
-function animateCounter(el){
-  var target = parseInt(el.getAttribute('data-count'), 10);
-  var suffix = el.getAttribute('data-suffix') || '';
-  var dur = 1600, start = null;
-  function step(ts){
-    if(!start) start = ts;
-    var p = Math.min((ts - start) / dur, 1);
-    var ease = 1 - Math.pow(1 - p, 3);
-    el.textContent = Math.floor(ease * target) + suffix;
-    if(p < 1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
-}
-if('IntersectionObserver' in window){
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){ animateCounter(e.target); io.unobserve(e.target); }
-    });
-  }, {threshold: 0.6});
-  document.querySelectorAll('.h-stat-n').forEach(function(el){ io.observe(el); });
-} else {
-  document.querySelectorAll('.h-stat-n').forEach(animateCounter);
-}
 
 /* ── Contact form → Formspree ── */
 document.getElementById('contact-form').addEventListener('submit', function(e){
