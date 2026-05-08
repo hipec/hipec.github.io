@@ -333,15 +333,20 @@ p { color: var(--grey); line-height: 1.75; }
   line-height: 1.8;
 }
 
-.hero-stats {
+.hero-bottom {
   display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.hero-stats {
+  display: inline-flex;
   gap: 0;
   flex-wrap: wrap;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
-  display: inline-flex;
-  margin-bottom: 40px;
 }
 .h-stat {
   padding: 18px 28px;
@@ -351,6 +356,8 @@ p { color: var(--grey); line-height: 1.75; }
   min-width: 120px;
 }
 .h-stat:last-child { border-right: none; }
+a.hero-stats { text-decoration: none; transition: border-color .2s; }
+a.hero-stats:hover { border-color: var(--amber); }
 .h-stat-n {
   display: block;
   font-size: 2rem;
@@ -1290,8 +1297,16 @@ footer p {
     <p class="hero-sub">
       We build adaptive runtime systems that efficiently harness parallelism across diverse computing platforms while optimizing performance and energy.
     </p>
-    <div class="hero-cta">
-      <a href="#research" class="btn-primary">View Research</a>
+    <div class="hero-bottom">
+      <a class="hero-stats" href="https://scholar.google.com.au/citations?user=cRZsY44AAAAJ&hl=en" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar profile">
+        <div class="h-stat">
+          <span class="h-stat-n">262+</span>
+          <span class="h-stat-l">Citations</span>
+        </div>
+      </a>
+      <div class="hero-cta">
+        <a href="#research" class="btn-primary">View Research</a>
+      </div>
     </div>
   </div>
 </section>
@@ -2251,10 +2266,17 @@ document.getElementById('contact-form').addEventListener('submit', function(e){
   document.getElementById('theme-toggle').addEventListener('click', toggle);
   if (mobileBtn) mobileBtn.addEventListener('click', toggle);
 })();
+
+(function(){
+  var d = new Date(document.lastModified);
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  document.getElementById('footer-year').textContent    = d.getFullYear();
+  document.getElementById('footer-updated').textContent = months[d.getMonth()] + ' ' + d.getFullYear();
+})();
 </script>
 
 <footer class="site-footer">
-  <span>© 2026 HiPeC Lab, IIIT-Delhi &nbsp;·&nbsp; Last updated May 2026</span>
+  <span>© <span id="footer-year">2026</span> HiPeC Lab, IIIT-Delhi - Last updated <span id="footer-updated">May 2026</span></span>
   <nav class="footer-links">
     <a href="#hero">Home</a>
     <a href="#research">Research</a>
