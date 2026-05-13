@@ -1856,6 +1856,7 @@ footer p {
     <h2 class="sec-title">Courses Offered</h2>
     <div class="tab-bar">
       <button class="tab-btn active" onclick="showTab('prmp',this)">PRMP (CSE513)</button>
+      <button class="tab-btn" onclick="showTab('mpprs',this)">MPPRS</button>
       <button class="tab-btn" onclick="showTab('ap-acm',this)">AP (ACM CSEDU)</button>
       <button class="tab-btn" onclick="showTab('fpp',this)">FPP (CSE502)</button>
       <button class="tab-btn" onclick="showTab('ap-cse',this)">AP (CSE201)</button>
@@ -1867,6 +1868,14 @@ footer p {
         <div class="course-year">Fall 2022</div>
         <p class="course-desc">Computing hardware is becoming more and more complex. Today and in the foreseeable future, performance will be delivered principally by increased hardware parallelism. Modern multicore processors scale to over one hundred cores, have wide vector units, maintain a complex memory hierarchy and even share the memory with accelerators such as GPU. Conventional programming models using threads impose significant complexity to organize code into multiple threads of control and balance work amongst threads. This course introduces the design and implementation of such a parallel runtime and explores the challenges in achieving performance and energy efficiency over modern processors. Offered at IIIT Delhi for undergraduate and postgraduate students.</p>
         <a href="https://hipec.github.io/courses/cse513.html" target="_blank" rel="noopener noreferrer" class="btn-amber">Learn More</a>
+      </div>
+    </div>
+    <div class="tab-panel" id="tab-mpprs">
+      <div class="course-card">
+        <div class="course-title">Multicore Parallel Programming and Runtime Systems (MPPRS)</div>
+        <div class="course-year">Spring 2025</div>
+        <p class="course-desc">Multicore processors are now universal, from mobile devices to supercomputers. Achieving high performance and energy efficiency on these architectures requires both a deep understanding of parallel programming models and the runtime systems that underpin them. This course covers task parallelism, data parallelism, loop parallelism, and synchronization, alongside the design of runtime systems that schedule and manage parallel work. Topics include work-stealing schedulers, NUMA-aware runtimes, user-level threading, memory consistency, cache coherency, SIMD vectorization, GPU computing, and power management. Offered at IIIT Delhi for undergraduate and postgraduate students.</p>
+        <a href="https://hipec.github.io/courses/mpprs.html" target="_blank" rel="noopener noreferrer" class="btn-amber">Learn More</a>
       </div>
     </div>
     <div class="tab-panel" id="tab-ap-acm">

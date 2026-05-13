@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MPPRS - Multicore Parallel Programming and Runtime Systems</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- css -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/style.css" rel="stylesheet" media="screen">
+    <link href="color/default.css" rel="stylesheet" media="screen">
+    <script src="js/modernizr.custom.js"></script>
+    <style>table, tr, td { color:#FFFFFF !important; padding:5px; }</style>
+  </head>
+  <body bgcolor="#013950">
+    <img src="img/mpprs.png" alt="MPPRS" style="width:60%;"/>
+
+    <!-- About -->
+    <section id="about" class="home-section- bg-blue">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-offset-1- col-md-12">
+
+            <h3 style="text-decoration:underline;"><strong>MPPRS OVERVIEW</strong></h3>
+            <p align="justify">
+Multicore processors are now universal, from mobile devices to supercomputers. Achieving high performance and energy efficiency on these architectures requires both a deep understanding of parallel programming models and the runtime systems that underpin them. This course covers the foundations of parallel programming — task parallelism, data parallelism, loop parallelism, and synchronization — alongside the design of the runtime systems that schedule and manage parallel work. Topics include work-stealing schedulers, NUMA-aware runtimes, user-level threading, memory consistency, cache coherency, SIMD vectorization, GPU computing, and power management. The course is offered at IIIT Delhi for undergraduate and postgraduate students. Students interested in taking this course should have prior experience with C/C++ programming.
+            </p><br/>
+
+            <h3 style="text-decoration:underline;"><strong>LECTURE TOPICS</strong></h3>
+            <p align="justify">
+<br>
+<ol>
+<li style="text-align:left;">Introduction to MPPRS [<a href="mpprs-pdf/lec01_introduction.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Introduction to Parallel Programming [<a href="mpprs-pdf/lec02_parallel_programming.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Concurrency Decomposition [<a href="mpprs-pdf/lec03_concurrency_decomposition.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Productivity in Parallel Programming [<a href="mpprs-pdf/lec04_productivity.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Computation Graphs and Ideal Parallelism [<a href="mpprs-pdf/lec05_ideal_parallelism.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Greedy Scheduler [<a href="mpprs-pdf/lec06_greedy_scheduler.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Task Scheduling Paradigms [<a href="mpprs-pdf/lec07_runtimes.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Loop Level Parallelism [<a href="mpprs-pdf/lec08_loops.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Mutual Exclusion in async-finish Programs [<a href="mpprs-pdf/lec09_isolation.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Futures, Promises, and Data Driven Tasks [<a href="mpprs-pdf/lec10_ddts.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Non Uniform Memory Access Architecture [<a href="mpprs-pdf/lec11_numa.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Hierarchical Place Trees [<a href="mpprs-pdf/lec12_hpt.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Parallel Programming with OpenMP [<a href="mpprs-pdf/lec13_openmp.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Mid Semester Review [<a href="mpprs-pdf/lec14_midsem.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Sequential Overheads from Task Granularity [<a href="mpprs-pdf/lec15_granularity.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Sequential Overheads from Concurrent Deque [<a href="mpprs-pdf/lec16_deques.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Context Switching Inside the User Space [<a href="mpprs-pdf/lec17_context.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">User Level Threads [<a href="mpprs-pdf/lec18_fibers.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Parallel Programming using SIMD Vector Units [<a href="mpprs-pdf/lec19_simd_vector.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Introduction to GPU Computing [<a href="mpprs-pdf/lec20_gpu.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Power Management in Multicore Processors [<a href="mpprs-pdf/lec21_power.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Introduction to Memory Consistency [<a href="mpprs-pdf/lec22_sequential_consistency.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Language Memory Model [<a href="mpprs-pdf/lec23_software_consistency.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Cache Coherency and False Sharing [<a href="mpprs-pdf/lec24_coherency.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">Miscellaneous Topics in Multicore Parallel Programming [<a href="mpprs-pdf/lec25_mixedtopics.pdf" target="_blank">PDF</a>]</li>
+<li style="text-align:left;">End Semester Review [<a href="mpprs-pdf/lec26_endterm_review.pdf" target="_blank">PDF</a>]</li>
+</ol>
+            </p>
+
+            <h3 style="text-decoration:underline;"><strong>ASSESSMENT PLAN</strong></h3>
+            <p align="justify">
+<br>
+<ul>
+<li style="text-align:left;"><u>Quizzes</u> (10%)
+<br>
+Quizzes happen roughly after every four to five lectures. Each quiz is of 20 minutes duration and is scheduled during the lecture hours towards the end of the lecture. The quiz consists of multiple-choice questions, fill in the blanks, and reasoning based questions.
+</li>
+<li style="text-align:left;"><u>Proctored labs</u> (20%)
+<br>
+Hands-on lab sessions held under proctored conditions. Students write and debug parallel programs on multicore systems, applying concepts covered in lectures.
+</li>
+<li style="text-align:left;"><u>Project</u> (20%)
+<br>
+The project is released after week two and runs throughout the semester. Projects teach parallel programming techniques and runtime design for achieving performance and energy efficiency over modern multicore processors.
+</li>
+<li style="text-align:left;"><u>Midterm exam</u> (20%)</li>
+<li style="text-align:left;"><u>Endterm exam</u> (30%)</li>
+</ul>
+            </p>
+
+            <h3 style="text-decoration:underline;"><strong>HELPFUL RESOURCES</strong></h3>
+            <p align="justify">
+<br>
+<ul>
+<li style="text-align:left;"><a href="https://missing.csail.mit.edu/">The Missing Semester of Your CS Education</a> (MIT)</li>
+<li style="text-align:left;"><a href="https://docs.github.com/en/get-started/quickstart/hello-world">Introduction to Github</a></li>
+<li style="text-align:left;"><a href="https://sourceware.org/gdb/onlinedocs/gdb/Threads.html">Debugging multithreaded programs</a></li>
+<li style="text-align:left;"><a href="https://github.com/hipec/cse513">Softwares for parallel programming courses</a></li>
+</ul>
+            </p>
+
+            <h3 style="text-decoration:underline;"><strong>INSTRUCTOR</strong></h3>
+            <p align="center">
+              <a href="https://vivkumar.github.io/"><img src="https://vivkumar.github.io/DSCN9553.jpg" alt="Vivek Kumar" style="width:30%;"/></a>
+            </p>
+
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <p>Copyright &copy; Vivek Kumar</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </section>
+
+    <!-- js -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.smooth-scroll.min.js"></script>
+    <script src="js/jquery.dlmenu.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/custom.js"></script>
+
+</html>
