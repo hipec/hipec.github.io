@@ -1339,6 +1339,7 @@ footer p {
     <div class="news-scroll">
 
       <div class="news-year">2026</div>
+      <div class="news-item">Patent published in Indian Patent Office</div>
       <div class="news-item">Sunil's paper accepted for publication in ACM TACO as a Journal First paper.</div>
       <div class="news-item">Spoorthi S. joined the lab as a PhD student.</div>
 
@@ -1414,6 +1415,7 @@ footer p {
       <button class="pub-filter-btn active" data-filter="all">All</button>
       <button class="pub-filter-btn" data-filter="journal">Journal</button>
       <button class="pub-filter-btn" data-filter="conference">Conference</button>
+      <button class="pub-filter-btn" data-filter="patent">Patent</button>
       <button class="pub-filter-btn" data-filter="workshop">Workshop</button>
     </div>
 
@@ -1430,6 +1432,20 @@ footer p {
       <div class="paper-abstract" id="p-taco26">
         <p>Due to the significant cost associated with power consumption, hardware overprovisioning is widely used to cap processor power consumption and improve the average power utilization of servers in data centers and nodes in HPC clusters. However, uniformly capping power across sockets in multiprocessor servers can lead to performance degradation for co-running applications due to workload variability. Existing solutions primarily focus on cluster-level power management, making limited use of power scheduling within multi-socket servers or processor frequency scaling to regulate power consumption under power constraints.</p>
         <p>This paper introduces Fulcrum, a novel power management library for co-running parallel applications on multi-socket, multi-core servers, independent of the underlying parallel programming model. Fulcrum dynamically redistributes power on a power-constrained multi-socket server to maximize throughput and fairness for co-running applications without requiring prior knowledge of application characteristics. Our results show that Fulcrum improves system throughput (geometric mean) by 26.3% under low power caps and by up to 5.3% under higher power caps, while delivering power efficiency improvements of 27.7–8.4% at the respective power caps.</p>
+      </div>
+    </div>
+
+    <!-- IPO 2025 -->
+    <div class="paper-card" data-type="patent">
+      <span class="paper-venue">Patent (IPO) 2025</span>
+      <!-- <span class="paper-venue">IPO 2025 <span class="badge-appear">To Appear</span></span> -->
+      <p class="paper-title">V. Kumar, and S. Kumar, "Method and System for Bidirectional Power Scheduling in Multiprocessor Environments", <em>Indian Patent Application No. 202511096593</em>, Published December 2025.</p>
+      <div class="paper-actions">
+        <button class="tag-btn" onclick="toggleAbstract('p-ipo25')">Abstract</button>
+      </div>
+      <div class="paper-tags"><span class="paper-tag">power management</span><span class="paper-tag">energy efficiency</span><span class="paper-tag">multiprocessor</span><span class="paper-tag">co-running</span></div>
+      <div class="paper-abstract" id="p-ipo25">
+        <p>Embodiments of the disclosure describe a bidirectional power scheduling method for a multiprocessor. The method includes assigning a predefined Power Capping (PCAP) to a plurality of sockets of the multiprocessor. The predefined PCAP indicates a maximum power consumption limit for each socket while at least one application is utilized on at least one socket among the plurality of sockets. The method further includes monitoring a Central Processing Unit (CPU) utilization periodically across each socket after assigning the predefined PCAP. The method further includes determining whether the at least one socket among the plurality of sockets requires a modification of the assigned predefined PCAP during the monitoring. The method further includes dynamically redistributing the assigned predefined PCAP bidirectionally among the plurality of sockets in response to determining that the at least one socket among the plurality of sockets requires modification.</p>
       </div>
     </div>
 
