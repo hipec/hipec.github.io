@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>HiPeC Lab — High Performance Computing @ IIIT-Delhi</title>
-  <link rel="icon" type="image/png" href="img/logo-dark.png" id="favicon">
-  <link rel="apple-touch-icon" href="img/logo-dark.png" id="apple-touch-icon">
+  <link rel="icon" type="image/png" href="img/logo-new.png" id="favicon">
+  <link rel="apple-touch-icon" href="img/logo-new.png" id="apple-touch-icon">
   <meta name="description" content="HiPeC Lab at IIIT-Delhi: adaptive runtime systems for high-performance, energy-efficient, and scalable computing.">
 
   <!-- Open Graph -->
@@ -1230,7 +1230,7 @@ footer p {
     <span></span><span></span><span></span>
   </button>
   <a class="mobile-logo" href="#hero">
-    <img src="img/logo-dark.png" alt="HiPeC Lab" id="mobile-logo-img">
+    <img src="img/logo-new.png" alt="HiPeC Lab" id="mobile-logo-img">
   </a>
   <button class="mobile-theme-toggle" id="mobile-theme-toggle" aria-label="Toggle theme">☀</button>
 </div>
@@ -1239,7 +1239,7 @@ footer p {
 <!-- ========================== SIDEBAR ================================ -->
 <div class="sidebar-navigation" id="sidebar">
   <a class="sidebar-logo" href="#hero">
-    <img src="img/logo-dark.png" alt="HiPeC Lab" id="sidebar-logo-img">
+    <img src="img/logo-new.png" alt="HiPeC Lab" id="sidebar-logo-img">
     <span class="sub">IIIT-Delhi</span>
   </a>
   <div class="theme-toggle-wrap">
@@ -1415,6 +1415,7 @@ footer p {
 
     <div class="pub-filters" id="pub-filters">
       <button class="pub-filter-btn active" data-filter="all">All</button>
+      <button class="pub-filter-btn" data-filter="highlighted">Awards &amp; Recognitions</button>
       <button class="pub-filter-btn" data-filter="journal">Journal</button>
       <button class="pub-filter-btn" data-filter="conference">Conference</button>
       <button class="pub-filter-btn" data-filter="patent">Patent</button>
@@ -1452,8 +1453,8 @@ footer p {
     </div>
 
     <!-- HiPC 2025 -->
-    <div class="paper-card" data-type="conference">
-      <span class="paper-venue">HiPC 2025 <span class="badge-best">Best Paper Award</span></span>
+    <div class="paper-card" data-type="conference" data-highlight="true">
+      <span class="paper-venue">HiPC 2025 <span class="badge-best">Distinguished Paper Award</span></span>
       <p class="paper-title">V. Jain, V. Parashar, V. Kumar, and C. Sur, "Energy-Aware Runtime Resource Harmonizer for Co-running Applications", in <em>32nd IEEE International Conference on High Performance Computing, Data, and Analytics</em>, Hyderabad, India, December 2025.</p>
       <div class="paper-actions">
         <button class="tag-btn" onclick="toggleAbstract('p-hipc25')">Abstract</button>
@@ -1552,8 +1553,8 @@ footer p {
     </div>
 
     <!-- SC 2021 -->
-    <div class="paper-card" data-type="conference">
-      <span class="paper-venue">SC 2021</span>
+    <div class="paper-card" data-type="conference" data-highlight="true">
+      <span class="paper-venue">SC 2021 <span class="badge-best">Best Reproducibility Advancement Finalist</span></span>
       <p class="paper-title">S. Kumar, A. Gupta, V. Kumar, and S. Bhalachandra, "Cuttlefish: Library for Achieving Energy Efficiency in Multicore Parallel Programs", in <em>Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis (SC'21)</em>, St. Louis, MO, USA, November 2021.</p>
       <div class="paper-actions">
         <button class="tag-btn" onclick="toggleAbstract('p-sc21')">Abstract</button>
@@ -1723,7 +1724,7 @@ footer p {
     </div>
 
     <!-- OOPSLA 2012 -->
-    <div class="paper-card" data-type="conference">
+    <div class="paper-card" data-type="conference" data-highlight="true">
       <span class="paper-venue">OOPSLA 2012 <span class="badge-best">SIGPLAN Research Highlight</span></span>
       <p class="paper-title">V. Kumar, D. Frampton, S. M. Blackburn, D. Grove, and O. Tardieu, "Work-Stealing Without The Baggage", in <em>Proceedings of the 2012 ACM SIGPLAN Conference on Object-Oriented Programming Systems, Languages &amp; Applications (OOPSLA 2012)</em>, Tucson, AZ, October 2012. (selected for <a href="https://www.sigplan.org/Highlights/Papers/" target="_blank" rel="noopener noreferrer">SIGPLAN Communications of ACM Research Highlights</a>, 2013)</p>
       <div class="paper-actions">
@@ -2199,7 +2200,9 @@ updateActiveLink();
       btns.forEach(function(b){ b.classList.remove('active'); });
       btn.classList.add('active');
       cards.forEach(function(card){
-        card.classList.toggle('hidden', filter !== 'all' && card.getAttribute('data-type') !== filter);
+        var show = filter === 'all' ||
+          (filter === 'highlighted' ? card.getAttribute('data-highlight') === 'true' : card.getAttribute('data-type') === filter);
+        card.classList.toggle('hidden', !show);
       });
     });
   });
@@ -2267,8 +2270,9 @@ document.getElementById('contact-form').addEventListener('submit', function(e){
   var favicon     = document.getElementById('favicon');
   var appleTouchIcon = document.getElementById('apple-touch-icon');
 
+  var logoFile = 'img/logo-new.png';
+
   function applyTheme(theme) {
-    var logoFile = theme === 'light' ? 'img/logo-light.png' : 'img/logo-dark.png';
     if (theme === 'light') {
       html.setAttribute('data-theme', 'light');
       if (mobileBtn) mobileBtn.textContent = '☾';
