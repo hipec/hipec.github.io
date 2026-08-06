@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>HiPeC Lab — High Performance Computing @ IIIT-Delhi</title>
-  <link rel="icon" type="image/png" href="img/logo-new.png" id="favicon">
-  <link rel="apple-touch-icon" href="img/logo-new.png" id="apple-touch-icon">
+  <link rel="icon" type="image/png" href="img/logo-new-light.png" id="favicon">
+  <link rel="apple-touch-icon" href="img/logo-new-light.png" id="apple-touch-icon">
   <meta name="description" content="HiPeC Lab at IIIT-Delhi: adaptive runtime systems for high-performance, energy-efficient, and scalable computing.">
 
   <!-- Open Graph -->
@@ -104,7 +104,7 @@ p { color: var(--grey); line-height: 1.75; }
   position: fixed;
   top: 0; left: 0;
   height: 100%;
-  background: var(--raised);
+  background: #1c2233;
   border-right: 1px solid var(--line);
   z-index: 1000;
   display: flex;
@@ -112,6 +112,7 @@ p { color: var(--grey); line-height: 1.75; }
   box-shadow: 2px 0 16px rgba(0,0,0,.25);
   overscroll-behavior: contain;
 }
+[data-theme="light"] .sidebar-navigation { background: var(--raised); }
 .sidebar-logo {
   padding: 24px 22px 20px;
   border-bottom: 1px solid var(--line);
@@ -1230,7 +1231,7 @@ footer p {
     <span></span><span></span><span></span>
   </button>
   <a class="mobile-logo" href="#hero">
-    <img src="img/logo-new.png" alt="HiPeC Lab" id="mobile-logo-img">
+    <img src="img/logo-new-light.png" alt="HiPeC Lab" id="mobile-logo-img">
   </a>
   <button class="mobile-theme-toggle" id="mobile-theme-toggle" aria-label="Toggle theme">☀</button>
 </div>
@@ -1239,7 +1240,7 @@ footer p {
 <!-- ========================== SIDEBAR ================================ -->
 <div class="sidebar-navigation" id="sidebar">
   <a class="sidebar-logo" href="#hero">
-    <img src="img/logo-new.png" alt="HiPeC Lab" id="sidebar-logo-img">
+    <img src="img/logo-new-light.png" alt="HiPeC Lab" id="sidebar-logo-img">
     <span class="sub">IIIT-Delhi</span>
   </a>
   <div class="theme-toggle-wrap">
@@ -2270,9 +2271,8 @@ document.getElementById('contact-form').addEventListener('submit', function(e){
   var favicon     = document.getElementById('favicon');
   var appleTouchIcon = document.getElementById('apple-touch-icon');
 
-  var logoFile = 'img/logo-new.png';
-
   function applyTheme(theme) {
+    var logoFile = theme === 'light' ? 'img/logo-new-dark.png' : 'img/logo-new-light.png';
     if (theme === 'light') {
       html.setAttribute('data-theme', 'light');
       if (mobileBtn) mobileBtn.textContent = '☾';
