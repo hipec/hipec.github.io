@@ -1341,6 +1341,7 @@ footer p {
     <div class="news-scroll">
 
       <div class="news-year">2026</div>
+      <div class="news-item">Sunil's paper accepted in HiPC conference.</div>
       <div class="news-item">Dr. Vivek received Teaching Excellence award for 2025-2026</div>
       <div class="news-item">Lakshay Sharma joined the lab for MTech Research thesis</div>
       <div class="news-item">Sunil submitted his PhD thesis in July</div>
@@ -1426,6 +1427,24 @@ footer p {
       <button class="pub-filter-btn" data-filter="workshop">Workshop</button>
     </div>
 
+    <!-- HiPC 2026 -->
+    <div class="paper-card" data-type="journal">
+      <span class="paper-venue">HiPC 2026</span>
+      <!-- <span class="paper-venue">HiPC 2026 <span class="badge-appear">To Appear</span></span> -->
+      <p class="paper-title">S. Kumar, and V. Kumar, "Reward-Driven Power Scheduling under Power Capping with DVFS-UFS Co-Optimization", in <em> 33rd IEEE International Conference on High Performance Computing, Data, and Analytics</em>, Bangalore, India, December 2026.</p>
+      <div class="paper-actions">
+        <button class="tag-btn" onclick="toggleAbstract('p-hipc26')">Abstract</button>
+        <!--a href="papers/taco26.pdf" target="_blank" rel="noopener noreferrer"><button class="tag-btn link">Paper</button></a-->
+      </div>
+      <div class="paper-tags"><span class="paper-tag">power management</span><span class="paper-tag">energy efficiency</span><span class="paper-tag">multicore</span><span class="paper-tag">co-running</span></div>
+      <div class="paper-abstract" id="p-hipc26">
+      <p> Hardware overprovisioning is a widely used technique to cap processor power consumption and improve average power utilization across data centre servers and HPC nodes. However, applying a uniform power cap across multiprocessor sockets often leads to significant performance degradation for co-running applications due to inherent workload variations. Recent research proposed a bidirectional power management runtime for co-running applications that dynamically redistributed power across sockets in a power-capped system. The runtime transferred surplus power from underutilizing co-runners to high-demand co-runners, and a reward mechanism restored half of the transferred power when demand resurged, ensuring balanced performance and fairness. </p>
+      <p> This paper introduces Themis, a novel power management library that improves upon the reward-driven approach by characterizing the power sensitivity of co-runners. Themis periodically profiles instructions per second (IPS) and CPU utilization for each co-runner and independently adjusts core and uncore frequencies for each application based on its frequency sensitivity, thereby maximizing overall system throughput. It dynamically determines and redistributes the share of surplus power and
+the amount of reward power based on co-runner's power-sensitivities. We evaluated Themis across various exascale proxy application mixes and power caps on a four-socket, 72-core Intel Cooper Lake processor. Our results show that Themis improved system throughput (geometric mean) by 24.4% at a lower power cap and 6.2% at a higher power cap. Moreover,
+Themis outperformed three state-of-the-art approaches at both power caps, achieving geometric mean throughput improvements of 13.8-4.2%.</p>
+      </div>
+    </div>
+
     <!-- TACO 2026 -->
     <div class="paper-card" data-type="journal">
       <span class="paper-venue">TACO 2026</span>
@@ -1438,7 +1457,7 @@ footer p {
       <div class="paper-tags"><span class="paper-tag">power management</span><span class="paper-tag">energy efficiency</span><span class="paper-tag">multicore</span><span class="paper-tag">co-running</span></div>
       <div class="paper-abstract" id="p-taco26">
         <p>Due to the significant cost associated with power consumption, hardware overprovisioning is widely used to cap processor power consumption and improve the average power utilization of servers in data centers and nodes in HPC clusters. However, uniformly capping power across sockets in multiprocessor servers can lead to performance degradation for co-running applications due to workload variability. Existing solutions primarily focus on cluster-level power management, making limited use of power scheduling within multi-socket servers or processor frequency scaling to regulate power consumption under power constraints.</p>
-        <p>This paper introduces Fulcrum, a novel power management library for co-running parallel applications on multi-socket, multi-core servers, independent of the underlying parallel programming model. Fulcrum dynamically redistributes power on a power-constrained multi-socket server to maximize throughput and fairness for co-running applications without requiring prior knowledge of application characteristics. Our results show that Fulcrum improves system throughput (geometric mean) by 26.3% under low power caps and by up to 5.3% under higher power caps, while delivering power efficiency improvements of 27.7–8.4% at the respective power caps.</p>
+        <p>This paper introduces Fulcrum, a novel power management library for co-running parallel applications on multi-socket, multi-core servers, independent of the underlying parallel programming model. Fulcrum dynamically redistributes power on a power-constrained multi-socket server to maximize throughput and fairness for co-running applications without requiring prior knowledge of application characteristics. Our results show that Fulcrum improves system throughput (geometric mean) by 26.3% under low power caps and by up to 5.3% under higher power caps, while delivering power efficiency improvements of 27.7?~@~S8.4% at the respective power caps.</p>
       </div>
     </div>
 
